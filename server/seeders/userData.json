@@ -1,0 +1,27 @@
+[
+    {
+        "username": "pawnee_goddess",
+        "email": "leslie.knope@pawneeparks.gov",
+        "password": "password01"
+    },
+    {
+        "username": "duke_silver_",
+        "email": "ron.swanson@pawneeparks.gov",
+        "password": "password02"
+    },
+    {
+        "username": "burt_macklin_fbi",
+        "email": "andy.dwyer@johnnykarate.com",
+        "password": "password03"
+    },
+    {
+        "username": "janet_snakehole",
+        "email": "april.ludgate@animalcontrol.gov",
+        "password": "password04"
+    },
+    {
+        "username": "cones_of_dunshire",
+        "email": "ben.wyatt@accountingfirm.com",
+        "password": "password05"
+    }
+]

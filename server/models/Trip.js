@@ -5,6 +5,10 @@ const photoSchema = require('./Photos');
 
 const tripSchema = new Schema(
     {
+        traveller: {
+            type: String,
+            required: true,
+        },
         location: {
             type: String,
             required: true,
