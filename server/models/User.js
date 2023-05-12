@@ -19,12 +19,12 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  thoughts: [
+  trips: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Thought',
-    },
-  ],
+      ref: 'trip'
+    }
+  ]
 });
 
 userSchema.pre('save', async function (next) {
