@@ -3,9 +3,9 @@ const { User, Trip } = require('../models');
 const userSeeds = require('./userData.json');
 const tripSeeds = require('./tripData.json');
 
-connection.on('error', (err) => err);
+db.on('error', (err) => err);
 
-connection.once('open', async () => {
+db.once('open', async () => {
     try {
         console.log('🛸🚀 connected 🚀🛸');
 
