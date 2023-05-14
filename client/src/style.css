@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+:root {
+    --black: #383838;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+body {
+    background-color: #EDF2FB;
+    color: var(--black);
+}
+
+.card {
+    margin: auto;
+    margin-top: 20vh;
+    background-color: #A9D6E5;
+    border: none;
+    border-radius: 20px;
+    height: 60vh;
+    width: 35vw;
+}
+
+.container {
+    width: 100%;
+}
+
+.card input {
+    border-radius: 30px;
+    border: none;
+    width: 100%;
+}
+
+.card input::placeholder {
+    color: #A3A3A3;
+    padding-left: 1em;
+}
+
+.card-body {
+    margin: auto;
+}
+
+.pswd-btn {
+    background-color: #2A6F97;
+    margin: auto;
+    margin-top: 20px;
+    /* max-width: 30%; */
+    border-radius: 30px;
+    color: white;
+    padding: 0.75em;
+}
+
+.card h2 {
+    font-size: 3em;
+    font-weight: 500;
+}
+
+form p {
+    width: 60%;
+    margin: auto;
+}
