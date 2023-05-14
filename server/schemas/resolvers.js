@@ -89,7 +89,7 @@ const resolvers = {
         { location, season, restaurants, activities, photos },
         { new: true }
         );
-      };
+      },
 
     // Delete a trip
     deleteTrip: async (parent, { _id }, context) => {
