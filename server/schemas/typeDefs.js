@@ -49,21 +49,17 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addTrip(location: String!, season: String, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
+    addTrip(location: String!, season: String!, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
     updateTrip(_id: ID!, location: String, season: String, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
     deleteTrip(_id: ID!): Trip
   }
 
   input RestaurantInput {
     name: String
-    cost: Int
-    description: String
   }
 
   input ActivityInput {
     name: String
-    cost: Int
-    description: String
   }
 
   input PhotoInput {
