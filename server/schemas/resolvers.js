@@ -108,6 +108,23 @@ const resolvers = {
       // If no user is authenticated, throw an error
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    // Add likes
+    addCode: async (parent, { _id }, context) => {
+      const like = await Trip.findOneAndUpdate(
+        { _id },
+        { $inc: { likes: 1 } },
+        { new: true }
+      );
+
+      return like;
+    }
+
+    // Add a comment
+
+    // Edit a comment
+
+    // Delete a comment
   }
 };
 
