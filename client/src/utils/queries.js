@@ -1,59 +1,98 @@
 import { gql } from '@apollo/client';
 
+// Query single user with their trips
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
       _id
       username
       email
-      thoughts {
+      trips {
         _id
-        thoughtText
-        createdAt
+        location
+        season
+        restaurants {
+          name
+          cost
+          description
+        }
+        activities {
+          name
+          cost
+          description
+        }
+        photos
       }
     }
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+// Query all trips
+export const QUERY_TRIPS = gql`
+  query getTrips {
+    trips {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-    }
-  }
-`;
-
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
+      location
+      season
+      restaurants {
+        name
+        cost
+        description
       }
+      activities {
+        name
+        cost
+        description
+      }
+      photos
     }
   }
 `;
 
+// Query single trip
+export const QUERY_SINGLE_TRIP = gql`
+  query getSingleTrip($tripId: ID!) {
+    trip(tripId: $tripId) {
+      _id
+      location
+      season
+      restaurants {
+        name
+        cost
+        description
+      }
+      activities {
+        name
+        cost
+        description
+      }
+      photos
+    }
+  }
+`;
+
+// Query current user with their trips
 export const QUERY_ME = gql`
   query me {
     me {
       _id
       username
       email
-      thoughts {
+      trips {
         _id
-        thoughtText
-        thoughtAuthor
-        createdAt
+        location
+        season
+        restaurants {
+          name
+          cost
+          description
+        }
+        activities {
+          name
+          cost
+          description
+        }
+        photos
       }
     }
   }

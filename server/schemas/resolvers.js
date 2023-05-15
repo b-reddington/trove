@@ -57,8 +57,12 @@ const resolvers = {
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-      
-      // If the passwords match, sign a token for the user
+      // // Alternate CodeBlock ->:  If the passwords match, create a JWT for the user
+      // const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
+      // // Return the JWT
+      // return { token };
+      // <-- ALternate CodeBlock: If the passwords match, sign a token for the user
       const token = signToken(user);
       // Return the user's data and token
       return { token, user };

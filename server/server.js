@@ -41,3 +41,38 @@ const startApolloServer = async (typeDefs, resolvers) => {
   
 // Call the async function to start the server
   startApolloServer(typeDefs, resolvers);
+
+const { ApolloServer } = require('apollo-server');
+const jwt = require('jsonwebtoken');
+const User = require('./models/User'); // adjust path as necessary
+
+const typeDefs = require('./schema');
+const resolvers = require('./resolvers');
+
+// define the context function
+const context = async ({ req }) => {
+  let user = null;
+  let token = req.headers.authorization || '';
+
+  if (token) {
+    token = token.replace('Bearer ', '');
+    try {
+      const decodedToken = jwt.verify(token, 'your-secret-key'); // replace 'your-secret-key' with your actual secret key
+      user = await User.findById(decodedToken._id);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  return { user };
+};
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context,  // provide the context function to the ApolloServer
+});
+
+server.listen().then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
+});
