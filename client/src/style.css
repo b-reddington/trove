@@ -23,7 +23,8 @@ body {
 
 .card {
     margin: auto;
-    margin-top: 20vh;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
     background-color: var(--light-blue);
     border: none;
     border-radius: 20px;
@@ -141,4 +142,8 @@ button {
         margin-top: 10vh;
         border-radius: 10px;
     }
+}
+
+.form-select{
+    border-radius: 30px;
 }

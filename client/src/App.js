@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Post from './pages/Post';
 import Header from './components/Header';
 
 // Construct our main GraphQL API endpoint
@@ -44,7 +45,6 @@ function App() {
       <Router>
         {/* Header is the primary Nav */}
         <Header />
-        <div className="flex-column justify-flex-start min-100-vh">
           <div className="container">
             <Routes>
               <Route 
@@ -55,9 +55,12 @@ function App() {
                 path="/register" 
                 element={<Signup />} 
               />
+              <Route
+                path="/new-post"
+                element={<Post />}
+              />
             </Routes>
           </div>
-        </div>
       </Router>
     </ApolloProvider>
   );
