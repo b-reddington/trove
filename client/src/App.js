@@ -45,7 +45,6 @@ function App() {
       <Router>
         {/* Header is the primary Nav */}
         <Header />
-        <div className="flex-column justify-flex-start min-100-vh">
           <div className="container">
             <Routes>
               <Route 
@@ -62,7 +61,6 @@ function App() {
               />
             </Routes>
           </div>
-        </div>
       </Router>
     </ApolloProvider>
   );
