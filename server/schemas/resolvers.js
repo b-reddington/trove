@@ -6,7 +6,7 @@ const resolvers = {
   Query: {
     // Get all trips, populate with restaurants and activities
     trips: async () => {
-      return Trip.find().populate('restaurants activities');
+      return Trip.find().populate('restaurants activities photos');
     },
 
     // Get a single trip by ID, populate with restaurants and activities

@@ -11,6 +11,7 @@ const typeDefs = gql`
 
   type Trip {
     _id: ID
+    traveller: String
     location: String
     season: String
     restaurants: [Restaurant]
@@ -21,15 +22,11 @@ const typeDefs = gql`
   type Restaurant {
     _id: ID
     name: String
-    cost: Int
-    description: String
   }
 
   type Activity {
     _id: ID
     name: String
-    cost: Int
-    description: String
   }
 
   type Photo {
