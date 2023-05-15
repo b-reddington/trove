@@ -6,22 +6,35 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
+    trips: [Trip]
   }
 
-  type Thought {
+  type Trip {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
+    location: String
+    season: String
+    restaurants: [Restaurant]
+    activities: [Activity]
+    photos: [Photo]
   }
 
-  type Comment {
+  type Restaurant {
     _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
+    name: String
+    cost: Int
+    description: String
+  }
+
+  type Activity {
+    _id: ID
+    name: String
+    cost: Int
+    description: String
+  }
+
+  type Photo {
+    _id: ID
+    url: String
   }
 
   type Auth {
@@ -30,20 +43,34 @@ const typeDefs = gql`
   }
 
   type Query {
-    users: [User]
+    trips: [Trip]
+    trip(_id: ID!): Trip
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addTrip(location: String!, season: String, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
+    updateTrip(_id: ID!, location: String, season: String, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
+    deleteTrip(_id: ID!): Trip
+  }
+
+  input RestaurantInput {
+    name: String
+    cost: Int
+    description: String
+  }
+
+  input ActivityInput {
+    name: String
+    cost: Int
+    description: String
+  }
+
+  input PhotoInput {
+    url: String
   }
 `;
 
