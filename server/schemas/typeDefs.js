@@ -18,7 +18,7 @@ const typeDefs = gql`
     restaurants: [Restaurant]
     activities: [Activity]
     photos: [Photo]
-    comments: [Comment]!
+    comments: [Comment]
     createdAt: String
   }
 
@@ -63,6 +63,8 @@ const typeDefs = gql`
     updateTrip(_id: ID!, location: String, season: String, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
     deleteTrip(_id: ID!): Trip
     addLikes(_id: ID!): Trip
+    addComment (tripId: ID!, commentText: String!): Trip
+    deleteComment (tripId: ID!, commentId: ID!): Trip
   }
 
   input RestaurantInput {
