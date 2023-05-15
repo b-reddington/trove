@@ -110,21 +110,55 @@ const resolvers = {
     },
 
     // Add likes
-    addCode: async (parent, { _id }, context) => {
-      const like = await Trip.findOneAndUpdate(
-        { _id },
-        { $inc: { likes: 1 } },
-        { new: true }
-      );
+    addLikes: async (parent, { _id }, context) => {
+      if (context.user) {
+        const like = await Trip.findOneAndUpdate(
+          { _id },
+          { $inc: { likes: 1 } },
+          { new: true }
+        );
 
-      return like;
-    }
+        return like;
+      }
+    },
 
     // Add a comment
-
-    // Edit a comment
+    addComment: async (parent, { tripId, commentText }, context) => {
+      if (context.user) {
+        return Trip.findOneAndUpdate(
+          { _id: tripId },
+          {
+            $addToSet: {
+              comments: { commenter: context.user.username, commentText },
+            },
+          },
+          {
+            new: true,
+            runValidators: true
+          }
+        )
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
 
     // Delete a comment
+    deleteComment: async (parent, { tripId, commentId }, context) => {
+      if (context.user) {
+        return Trip.findOneAndUpdate(
+          { _id: tripId },
+          {
+            $pull: {
+              comments: {
+                _id: commentId,
+                commentAuthor: context.user.username,
+              },
+            },
+          },
+          { new: true }
+        )
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
   }
 };
 
