@@ -1,7 +1,11 @@
 import Nav from 'react-bootstrap/Nav';
 import Auth from '../../utils/auth';
 
-function Navbar({ currentPage, handlePageChange }) {
+function Navbar() {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   return (
     <Nav>
       <Nav.Item>
@@ -12,9 +16,14 @@ function Navbar({ currentPage, handlePageChange }) {
       </Nav.Item>
       {/* if user is logged in display the following */}
       {Auth.loggedIn() ? (
+        <>
         <Nav.Item>
           <Nav.Link href="/profile">Profile</Nav.Link>
         </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>
+          </Nav.Item>
+        </>
       ) : (
         // if user is not logged in, display the following
         <>
