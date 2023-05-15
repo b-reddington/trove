@@ -6,12 +6,12 @@ const resolvers = {
   Query: {
     // Get all trips, populate with restaurants and activities
     trips: async () => {
-      return Trip.find().populate('restaurants activities');
+      return Trip.find().populate('restaurants activities photos');
     },
 
     // Get a single trip by ID, populate with restaurants and activities
     trip: async (parent, { _id }) => {
-      return Trip.findOne({ _id }).populate('restaurants activities');
+      return Trip.findOne({ _id }).populate('restaurants activities photos');
     },
 
     // Get a single user by username, populate with their trips
@@ -68,7 +68,7 @@ const resolvers = {
     addTrip: async (parent, { location, season, restaurants, activities, photos }, context) => {
       // If a user is authenticated, add a new trip
       if (context.user) {
-        const trip = await Trip.create({ location, season, restaurants, activities, photos });
+        const trip = await Trip.create({ traveller: context.user.username, location, season, restaurants, activities, photos });
         // Add the trip to the authenticated user's list of trips
         await User.findOneAndUpdate(
           { _id: context.user._id },

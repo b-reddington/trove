@@ -11,6 +11,7 @@ const typeDefs = gql`
 
   type Trip {
     _id: ID
+    traveller: String
     location: String
     season: String
     restaurants: [Restaurant]
@@ -21,15 +22,11 @@ const typeDefs = gql`
   type Restaurant {
     _id: ID
     name: String
-    cost: Int
-    description: String
   }
 
   type Activity {
     _id: ID
     name: String
-    cost: Int
-    description: String
   }
 
   type Photo {
@@ -52,21 +49,17 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addTrip(location: String!, season: String, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
+    addTrip(location: String!, season: String!, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
     updateTrip(_id: ID!, location: String, season: String, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
     deleteTrip(_id: ID!): Trip
   }
 
   input RestaurantInput {
     name: String
-    cost: Int
-    description: String
   }
 
   input ActivityInput {
     name: String
-    cost: Int
-    description: String
   }
 
   input PhotoInput {
