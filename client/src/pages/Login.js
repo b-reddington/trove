@@ -74,7 +74,7 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                  <p>Don't have an account yet?<a className="lb" href="/signup">Click here to create one!</a></p>
+                <p>Don't have an account yet?<a className="lb" href="/register">Click here to create one!</a></p>
                 <button
                   className="btn btn-block pswd-btn login-btn"
                   style={{ cursor: 'pointer' }}
@@ -83,9 +83,7 @@ const Login = (props) => {
                   Login
                 </button>
               </form>
-
             )}
-
             {error && (
               <div className="my-3 p-3 bg-danger text-white">
                 {error.message}
