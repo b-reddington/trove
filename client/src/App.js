@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -10,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Header from './components/Header';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -35,10 +37,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        {/* Header is the primary Nav */}
+        <Header />
         <div className="flex-column justify-flex-start min-100-vh">
           <div className="container">
             <Routes>
@@ -47,7 +52,7 @@ function App() {
                 element={<Login />} 
               />
               <Route 
-                path="/signup" 
+                path="/register" 
                 element={<Signup />} 
               />
             </Routes>

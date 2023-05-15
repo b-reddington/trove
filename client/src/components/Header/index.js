@@ -1,46 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import Nav from 'react-bootstrap/Nav';
 import Auth from '../../utils/auth';
 
-const Header = () => {
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-  };
+function Navbar({ currentPage, handlePageChange }) {
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <div>
-          <Link className="text-light" to="/">
-            <h1 className="m-0">Tech Thoughts</h1>
-          </Link>
-          <p className="m-0">Get into the mind of a programmer.</p>
-        </div>
-        <div>
-          {Auth.loggedIn() ? (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
-                {Auth.getProfile().data.username}'s profile
-              </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-    </header>
-  );
-};
+    <Nav>
+      <Nav.Item>
+        <Nav.Link className="nav-title" href="/">Trove</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/home">Home</Nav.Link>
+      </Nav.Item>
+      {/* if user is logged in display the following */}
+      {Auth.loggedIn() ? (
+        <Nav.Item>
+          <Nav.Link href="/profile">Profile</Nav.Link>
+        </Nav.Item>
+      ) : (
+        // if user is not logged in, display the following
+        <>
+        <Nav.Item>
+          <Nav.Link href="/login">Login</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href="/register">Register</Nav.Link>
+          </Nav.Item>
+          </>
+      )}
+    </Nav>
+  )
+}
 
-export default Header;
+export default Navbar;

@@ -74,13 +74,13 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <p>Don't have an account yet? <a href="/signup">Click here to create one!</a></p>
+                  <p>Don't have an account yet?<a className="lb" href="/signup">Click here to create one!</a></p>
                 <button
-                  className="btn btn-block pswd-btn"
+                  className="btn btn-block pswd-btn login-btn"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
-                  Submit
+                  Login
                 </button>
               </form>
 
