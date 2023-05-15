@@ -42,7 +42,7 @@ const Signup = () => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+          <h2 className="text-center">REGISTER</h2>
           <div className="card-body">
             {data ? (
               <p>
@@ -51,36 +51,52 @@ const Signup = () => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
+                <label for="username">USERNAME</label>
                 <input
                   className="form-input"
                   placeholder="Your username"
+                  id="username"
                   name="username"
                   type="text"
                   value={formState.name}
                   onChange={handleChange}
                 />
+                <label for="email">EMAIL</label>
                 <input
                   className="form-input"
                   placeholder="Your email"
+                  id="email"
                   name="email"
                   type="email"
                   value={formState.email}
                   onChange={handleChange}
                 />
+                <label for="password">PASSWORD</label>
                 <input
                   className="form-input"
-                  placeholder="******"
+                  placeholder="password"
+                  id="password"
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
                 />
+                  {/* <label for="confirm-password">CONFIRM PASSWORD</label>
+                  <input
+                    className="form-input"
+                    placeholder="re-enter password"
+                    id="confirm-password"
+                    name="confirm-password"
+                    type="password"
+                    value={formState.password}
+                    onChange={handleChange}
+                  /> */}
                 <button
-                  className="btn btn-block btn-primary"
+                    className="btn btn-block pswd-btn login-btn"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
-                  Submit
+                  REGISTER
                 </button>
               </form>
             )}

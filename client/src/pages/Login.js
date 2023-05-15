@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import Container from 'react-bootstrap/Container';
 
 import Auth from '../utils/auth';
 
@@ -44,7 +45,7 @@ const Login = (props) => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
+          <h2 className="text-center">LOGIN</h2>
           <div className="card-body">
             {data ? (
               <p>
@@ -53,30 +54,36 @@ const Login = (props) => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
+                <label for="email">EMAIL</label>
                 <input
                   className="form-input"
                   placeholder="Your email"
+                  id="email"
                   name="email"
                   type="email"
                   value={formState.email}
                   onChange={handleChange}
                 />
+                <label for="password">PASSWORD</label>
                 <input
                   className="form-input"
-                  placeholder="******"
+                  placeholder="password"
+                  id="password"
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
                 />
+                  <p>Don't have an account yet?<a className="lb" href="/signup">Click here to create one!</a></p>
                 <button
-                  className="btn btn-block btn-primary"
+                  className="btn btn-block pswd-btn login-btn"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
-                  Submit
+                  Login
                 </button>
               </form>
+
             )}
 
             {error && (

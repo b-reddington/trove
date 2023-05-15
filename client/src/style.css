@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+:root {
+    --black: #383838;
+    --offWhite: #EDF2FB;
+    --light-blue: #A9D6E5;
+    --dark-blue: #2A6F97;
+}
+
+.dark-blue {
+    color: var(--dark-blue);
+}
+
+* {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+body {
+    background-color: var(--offWhite);
+    color: var(--black);
+}
+
+.card {
+    margin: auto;
+    margin-top: 20vh;
+    background-color: var(--light-blue);
+    border: none;
+    border-radius: 20px;
+    height: fit-content;
+    width: 35vw;
+}
+
+.container {
+    width: 100%;
+}
+
+.card input {
+    border-radius: 30px;
+    border: none;
+    width: 100%;
+}
+
+input::placeholder {
+    color: #A3A3A3;
+    padding-left: 1em;
+}
+
+input:focus {
+    outline: none;
+}
+
+.card-body {
+    margin: auto;
+    width: 75%;
+}
+
+.pswd-btn {
+    background-color: var(--dark-blue);
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 30px;
+    color: white;
+    padding: 0.75em;
+}
+
+.card h2 {
+    font-size: 3em;
+    font-weight: 500;
+    margin-top: 1em;
+}
+
+form p {
+    width: 55%;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 10px;
+    font-size: 1em;
+}
+
+button {
+    width: fit-content !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    margin-bottom: 30px !important;
+    /* margin: auto !important; */
+}
+
+.login-btn:hover {
+    background-color: var(--light-blue) !important;
+    color: var(--dark-blue);
+    border: solid 1px var(--dark-blue);
+    font-weight: 600;
+}
+
+.lb {
+    display: block;
+}
+
+.nav-title {
+    font-family: 'Pacifico', cursive !important;
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+.nav-link {
+    font-size: 18px;
+    color: var(--black) !important;
+    border-radius: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.nav-link:hover {
+    color: var(--black) !important;
+    background-color: var(--light-blue);
+    text-decoration: none;
+}
+
+.nav-link-active {
+    color: var(--black) !important;
+    background-color: var(--light-blue);
+    text-decoration: none;
+}
+
+.nav-title:hover {
+    background-color: var(--offWhite);
+}
+
+/* Styles for medium screens and smaller */
+@media (max-width: 768px) {
+    .card {
+        width: 60vw;
+    }
+}
+
+/* Styles for small screens */
+@media (max-width: 480px) {
+    .card {
+        width: 80vw;
+        margin-top: 10vh;
+        border-radius: 10px;
+    }
+}
