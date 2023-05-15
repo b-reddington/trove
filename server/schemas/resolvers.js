@@ -11,7 +11,7 @@ const resolvers = {
 
     // Get a single trip by ID, populate with restaurants and activities
     trip: async (parent, { _id }) => {
-      return Trip.findOne({ _id }).populate('restaurants activities photos');
+      return Trip.findOne({ _id }).populate('restaurants activities photos comments');
     },
 
     // Get a single user by username, populate with their trips

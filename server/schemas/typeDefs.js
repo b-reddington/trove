@@ -14,9 +14,12 @@ const typeDefs = gql`
     traveller: String
     location: String
     season: String
+    likes: Number
     restaurants: [Restaurant]
     activities: [Activity]
     photos: [Photo]
+    comments: [Comment]!
+    createdAt: String
   }
 
   type Restaurant {
@@ -32,6 +35,13 @@ const typeDefs = gql`
   type Photo {
     _id: ID
     url: String
+  }
+
+  type Comment {
+    _id: ID
+    commenter: String
+    commentText: String
+    createdAt: String
   }
 
   type Auth {
