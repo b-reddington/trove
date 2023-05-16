@@ -14,7 +14,7 @@ const typeDefs = gql`
     traveller: String
     location: String
     season: String
-    likes: Number
+    likes: Int
     restaurants: [Restaurant]
     activities: [Activity]
     photos: [Photo]

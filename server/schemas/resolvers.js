@@ -150,7 +150,7 @@ const resolvers = {
             $pull: {
               comments: {
                 _id: commentId,
-                commentAuthor: context.user.username,
+                commenter: context.user.username,
               },
             },
           },
