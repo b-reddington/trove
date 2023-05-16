@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_TRIPS } from '../gql/queries';
 
@@ -6,7 +6,7 @@ function TripsList() {
     const { loading, error, data } = useQuery(QUERY_TRIPS);
   
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+    if (error) return <p>Error :</p>;
   
     return (
       <div>
@@ -19,7 +19,7 @@ function TripsList() {
         ))}
       </div>
     );
-  }
+ }
   
   export default TripsList;
   
