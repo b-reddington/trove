@@ -13,6 +13,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Post from './pages/Post';
 import Header from './components/Header';
+import Home from './pages/Home';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -59,7 +60,12 @@ function App() {
                 path="/new-post"
                 element={<Post />}
               />
+              <Route
+              path="/home"
+              element={<Home />}
+              />
             </Routes>
+            
           </div>
       </Router>
     </ApolloProvider>
