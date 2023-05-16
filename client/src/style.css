@@ -147,3 +147,38 @@ button {
 .form-select{
     border-radius: 30px;
 }
+
+/* styling for cards - kept here for now */
+* {
+    word-wrap: break-word;
+}
+.postcard {
+    background-color: var(--light-blue);
+    border: none;
+    border-radius: 20px;
+    width: 25% !important;
+    height: 25% !important;
+    padding-top: 1.75em;
+}
+
+.geoicon {
+    font-size: 2em;
+    margin: auto;
+}
+
+.location {
+    margin: 1em auto !important;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.created-by {
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 0;
+}
+
+.created-on {
+    text-align: center;
+    font-size: 1em;
+}

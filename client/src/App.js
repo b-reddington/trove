@@ -15,7 +15,6 @@ import Post from './pages/Post';
 import Header from './components/Header';
 import Home from './pages/Home';
 
-
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
