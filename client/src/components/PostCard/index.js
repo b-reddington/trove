@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Card} from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card'
+import { GeoAltFill } from 'react-bootstrap-icons';
 
-export default function Post({ location, traveller, createdAt }) {
+export default function PostCard({ location, traveller, createdAt }) {
     return (
-        <Card className="card">
-            <span class="material-icons-round">place</span>
-            <h3>{location}</h3>
-            <div>Dream vacation</div>
-            <p>Created by {traveller} on {createdAt}</p>
+        <Card className="postcard">
+            <GeoAltFill color="#2A6F97" />
+            <h3 className="location">{location}</h3>
+            <p className="created-by">Created by {traveller}</p>
+            <p className="created-on">on {createdAt}</p>
         </Card>
     )
 }
