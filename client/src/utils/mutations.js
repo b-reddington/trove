@@ -1,10 +1,8 @@
 import { gql } from '@apollo/client';
 
-// Mutation to create a new user
-
+// create a new user
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
-
     addUser(username: $username, email: $email, password: $password) {
       token
       user {
@@ -12,14 +10,12 @@ export const ADD_USER = gql`
         username
       }
     }
-  }`
-;
+  }
+`;
 
-// Mutation to login a user
-
+// login a user
 export const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
-
     login(email: $email, password: $password) {
       token
       user {
@@ -27,64 +23,111 @@ export const LOGIN_USER = gql`
         username
       }
     }
-  }`
-;
+  }
+  `;
 
-// Mutation to add a new trip
-
+// create a new trip
 export const ADD_TRIP = gql`
   mutation addTrip($location: String!, $season: String, $restaurants: [RestaurantInput], $activities: [ActivityInput], $photos: [String]) {
-
-    addTrip(location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
+    addTrip(location: $location, season: $season) {
       _id
+      traveller
       location
       season
-      restaurants {
-        name
-        cost
-        description
-      }
+      likes
       activities {
         name
-        cost
-        description
       }
-      photos
+      restaurants {
+        name
+      }
+      photos {
+        url
+      }
+      comments {
+        _id
+        commentText
+      }
     }
-  }`
-;
+  }
+  `;
 
-// Mutation to update a trip
-
+// update a trip
 export const UPDATE_TRIP = gql`
   mutation updateTrip($tripId: ID!, $location: String, $season: String, $restaurants: [RestaurantInput], $activities: [ActivityInput], $photos: [String]) {
-
-    updateTrip(tripId: $tripId, location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
+    updateTrip(_id: $id, location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
       _id
+      traveller
       location
       season
-      restaurants {
-        name
-        cost
-        description
-
-      }
+      createdAt
+      likes
       activities {
         name
-        cost
-        description
       }
-      photos
+      restaurants {
+        name
+      }
+      photos {
+        url
+      }
+      comments {
+        _id
+        commentText
+      }
     }
   }
 `;
 
-// Mutation to delete a trip
+// delete a trip
 export const DELETE_TRIP = gql`
   mutation deleteTrip($tripId: ID!) {
-
-    deleteTrip(tripId: $tripId) {
+    deleteTrip(_id: $id) {
       _id
+      location
     }
-  }`
-;
+  }
+`;
+
+// add likes
+export const ADD_LIKES = gql`
+  mutation addLikes(_id: ID!) {
+    addLikes(_id: $id) {
+      _id
+      location
+      likes
+    }
+  }
+`;
+
+// add a comment
+export const ADD_COMMENT = gql`
+  mutation addComment($tripId: ID!, $commentText: String!) {
+    addComment(tripId: $tripId, commentText: $commentText) {
+      _id
+      location
+      comments {
+        _id
+        commenter
+        commentText
+        createdAt
+      }
+    }
+  }
+`;
+
+// delete a comment
+export const DELETE_COMMENT = gql`
+  mutation deleteComment($tripId: ID!, $commentId: ID!) {
+    deleteComment(tripId: $tripId, commentId: $commentId) {
+      _id
+      location
+      comments {
+        _id
+        commenter
+        commentText
+        createdAt
+      }
+    }
+  }
+`;
