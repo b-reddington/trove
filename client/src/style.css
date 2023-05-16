@@ -158,27 +158,27 @@ button {
     border-radius: 20px;
     width: 25% !important;
     height: 25% !important;
-    padding: 0.25em;
+    padding-top: 1.75em;
 }
+
+.geoicon {
+    font-size: 2em;
+    margin: auto;
+}
+
 .location {
-    text-align: center;
+    margin: 1em auto !important;
     font-size: 1.5em;
     font-weight: 400;
 }
-.dream-tag {
-    max-width: fit-content;
-    padding: 0 17px;
-    margin: 0 auto;
-    background-color: #E0D3B1;
-    border-radius: 28px;
-    font-size: 0.9em;
-}
+
 .created-by {
     text-align: center;
     font-size: 1em;
+    margin-bottom: 0;
 }
+
 .created-on {
-    margin-top: -0.75em;
     text-align: center;
     font-size: 1em;
 }
