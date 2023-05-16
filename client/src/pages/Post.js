@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 
+import CloudinaryUpload from '../components/Cloudinary';
 let seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
 
 function Post() {
@@ -29,6 +30,7 @@ function Post() {
         setActivities([...activities, '']); // Add a new empty activity
     };
 
+
     return (
         <div className="card">
             <div className="card-body">
@@ -42,6 +44,7 @@ function Post() {
                         {seasons.map((season) => (
                             <option key={season}>{season}</option>
                         ))}
+
                     </Form.Select>
 
                     {restaurants.map((restaurant, index) => (
@@ -73,7 +76,10 @@ function Post() {
                         </div>
                     ))}
                     <button className="btn btn-primary lb" onClick={handleAddActivity}>+</button>
-
+                    <>
+                    <CloudinaryUpload/>
+                    
+                    </>
                     <button className="btn btn-block pswd-btn login-btn" style={{ cursor: 'pointer' }} type="submit">
                         Post
                     </button>
