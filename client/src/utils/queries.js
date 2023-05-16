@@ -1,10 +1,8 @@
 import { gql } from '@apollo/client';
 
-// Query single user with their trips
-
+// Query single user with their trips - for user profiles
 export const QUERY_USER = gql`
   query user($username: String!) {
-
     user(username: $username) {
       _id
       username
@@ -13,72 +11,60 @@ export const QUERY_USER = gql`
         _id
         location
         season
-        restaurants {
-          name
-          cost
-          description
+        createdAt
+        likes
+        photos {
+          url
         }
-        activities {
-          name
-          cost
-          description
-        }
-        photos
       }
     }
   }`
 ;
 
-// Query all trips
-
+// Query all trips - for the homepage
 export const QUERY_TRIPS = gql`
 query getTrips {
   trips {
     _id
     location
-    season
-    restaurants {
-      name
-  
+    traveller
+    createdAt
+    photos {
+      url
     }
-    activities {
-      name
-   
-      
-    }
-    
+  }
+}`;
+
+// Query single trip - for the trip page
+export const QUERY_SINGLE_TRIP = gql`
+trip(_id: $id) {
+  _id
+  traveller
+  location
+  season
+  createdAt
+  likes
+  restaurants {
+    name
+  }
+  activities {
+    name
+  }
+  photos {
+    url
+  }
+  comments {
+    commenter
+    commentText
+    createdAt
   }
 }
-`;
-
-// Query single trip
-export const QUERY_SINGLE_TRIP = gql`
-  query getSingleTrip($tripId: ID!) {
-
-    trip(tripId: $tripId) {
-      _id
-      location
-      season
-      restaurants {
-        name
-        cost
-        description
-      }
-      activities {
-        name
-        cost
-        description
-      }
-      photos
-    }
-  }`
+`
 ;
 
-// Query current user with their trips
-
+// Query current user with their trips - for my profile
 export const QUERY_ME = gql`
   query me {
-
     me {
       _id
       username
@@ -87,17 +73,11 @@ export const QUERY_ME = gql`
         _id
         location
         season
-        restaurants {
-          name
-          cost
-          description
+        createdAt
+        likes
+        photos {
+          url
         }
-        activities {
-          name
-          cost
-          description
-        }
-        photos
       }
     }
   }`
