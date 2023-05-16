@@ -29,24 +29,23 @@ export const QUERY_USER = gql`
 
 // Query all trips
 export const QUERY_TRIPS = gql`
-  query getTrips {
-    trips {
-      _id
-      location
-      season
-      restaurants {
-        name
-        cost
-        description
-      }
-      activities {
-        name
-        cost
-        description
-      }
-      photos
+query getTrips {
+  trips {
+    _id
+    location
+    season
+    restaurants {
+      name
+  
     }
+    activities {
+      name
+   
+      
+    }
+    
   }
+}
 `;
 
 // Query single trip

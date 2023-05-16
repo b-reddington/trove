@@ -27,7 +27,7 @@ export const LOGIN_USER = gql`
 `;
 
 // Mutation to add a new trip
-export const MUTATION_ADD_TRIP = gql`
+export const ADD_TRIP = gql`
   mutation addTrip($location: String!, $season: String, $restaurants: [RestaurantInput], $activities: [ActivityInput], $photos: [String]) {
     addTrip(location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
       _id
@@ -49,7 +49,7 @@ export const MUTATION_ADD_TRIP = gql`
 `;
 
 // Mutation to update a trip
-export const MUTATION_UPDATE_TRIP = gql`
+export const UPDATE_TRIP = gql`
   mutation updateTrip($tripId: ID!, $location: String, $season: String, $restaurants: [RestaurantInput], $activities: [ActivityInput], $photos: [String]) {
     updateTrip(tripId: $tripId, location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
       _id
@@ -71,7 +71,7 @@ export const MUTATION_UPDATE_TRIP = gql`
 `;
 
 // Mutation to delete a trip
-export const MUTATION_DELETE_TRIP = gql`
+export const DELETE_TRIP = gql`
   mutation deleteTrip($tripId: ID!) {
     deleteTrip(tripId: $tripId) {
       _id
