@@ -14,9 +14,12 @@ const typeDefs = gql`
     traveller: String
     location: String
     season: String
+    likes: Int
     restaurants: [Restaurant]
     activities: [Activity]
     photos: [Photo]
+    comments: [Comment]
+    createdAt: String
   }
 
   type Restaurant {
@@ -32,6 +35,13 @@ const typeDefs = gql`
   type Photo {
     _id: ID
     url: String
+  }
+
+  type Comment {
+    _id: ID
+    commenter: String
+    commentText: String
+    createdAt: String
   }
 
   type Auth {
@@ -52,6 +62,9 @@ const typeDefs = gql`
     addTrip(location: String!, season: String!, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
     updateTrip(_id: ID!, location: String, season: String, restaurants: [RestaurantInput], activities: [ActivityInput], photos: [PhotoInput]): Trip
     deleteTrip(_id: ID!): Trip
+    addLikes(_id: ID!): Trip
+    addComment (tripId: ID!, commentText: String!): Trip
+    deleteComment (tripId: ID!, commentId: ID!): Trip
   }
 
   input RestaurantInput {

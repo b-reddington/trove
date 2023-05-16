@@ -11,7 +11,7 @@ const resolvers = {
 
     // Get a single trip by ID, populate with restaurants and activities
     trip: async (parent, { _id }) => {
-      return Trip.findOne({ _id }).populate('restaurants activities photos');
+      return Trip.findOne({ _id }).populate('restaurants activities photos comments');
     },
 
     // Get a single user by username, populate with their trips
@@ -57,8 +57,12 @@ const resolvers = {
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-      
-      // If the passwords match, sign a token for the user
+      // // Alternate CodeBlock ->:  If the passwords match, create a JWT for the user
+      // const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+
+      // // Return the JWT
+      // return { token };
+      // <-- ALternate CodeBlock: If the passwords match, sign a token for the user
       const token = signToken(user);
       // Return the user's data and token
       return { token, user };
@@ -108,6 +112,57 @@ const resolvers = {
       // If no user is authenticated, throw an error
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    // Add likes
+    addLikes: async (parent, { _id }, context) => {
+      if (context.user) {
+        const like = await Trip.findOneAndUpdate(
+          { _id },
+          { $inc: { likes: 1 } },
+          { new: true }
+        );
+
+        return like;
+      }
+    },
+
+    // Add a comment
+    addComment: async (parent, { tripId, commentText }, context) => {
+      if (context.user) {
+        return Trip.findOneAndUpdate(
+          { _id: tripId },
+          {
+            $addToSet: {
+              comments: { commenter: context.user.username, commentText },
+            },
+          },
+          {
+            new: true,
+            runValidators: true
+          }
+        )
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    // Delete a comment
+    deleteComment: async (parent, { tripId, commentId }, context) => {
+      if (context.user) {
+        return Trip.findOneAndUpdate(
+          { _id: tripId },
+          {
+            $pull: {
+              comments: {
+                _id: commentId,
+                commenter: context.user.username,
+              },
+            },
+          },
+          { new: true }
+        )
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
   }
 };
 
