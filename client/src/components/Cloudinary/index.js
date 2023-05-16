@@ -50,15 +50,15 @@ function CloudinaryUpload() {
             cloudName: 'dyyvpwi2d',
             uploadPreset: 'wxs3ivaq',
             cropping: true, // Enable cropping functionality
-            croppingAspectRatio: 1, // Set aspect ratio for cropping
-            croppingShowDimensions: true, // Show dimensions of the cropped image
-            croppingDefaultSelectionRatio: 0.8 // Set the default selection ratio for cropping
+            // croppingAspectRatio: 1, // Set aspect ratio for cropping
+            //  croppingShowDimensions: true, // Show dimensions of the cropped image
+            //  croppingDefaultSelectionRatio: 0.8, // Set the default selection ratio for cropping
         }
     });
 
-    const onImageUploadHandler = (publicId) => {
-        setImagesUploadedList((prevState) => [...prevState, publicId]);
-    };
+    // const onImageUploadHandler = (publicId) => {
+    //     setImagesUploadedList((prevState) => [...prevState, publicId]);
+    // };
 
     const deleteAllImages = async () => {
         try {
@@ -79,9 +79,10 @@ function CloudinaryUpload() {
                 Delete all images
             </button>
             <ImageUpload
-                cloud_name={cld.cloudinaryConfig.cloud.cloud_name}
-                upload_preset={cld.cloudinaryConfig.cloud.upload_preset}
-                onImageUpload={(publicId) => onImageUploadHandler(publicId)}
+                cloud_name={cld.cloudinaryConfig.cloud.cloudName}
+                upload_preset={cld.cloudinaryConfig.cloud.uploadPreset}
+                crop_preset={cld.cloudinaryConfig.cloud.cropping}
+                //onImageUpload={(publicId) => onImageUploadHandler(publicId)}
             />
         </div>
     );
