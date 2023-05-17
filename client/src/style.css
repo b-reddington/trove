@@ -78,22 +78,104 @@ form p {
     padding-bottom: 10px;
     font-size: 1em;
 }
+/* Add a post page button formatting */
+.inner-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .inner-input label {
+    margin-bottom: 0.5rem; 
+  }
+  
+  .inner-input input {
+    width: 100%; 
+  }
+  
+  .inner-input:hover button {
+    display: block;
+  }
 
-button {
+/* End section */
+.button {
     width: fit-content !important;
     padding-left: 30px !important;
     padding-right: 30px !important;
     margin-bottom: 30px !important;
     /* margin: auto !important; */
 }
+.deleteBtn{
+    border-radius: 50px;
+    border:none;
+    height:30px !important;
+    width:30px !important;
+    font-size: 2.2em;
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    background-color: var(--dark-blue);
+    transform: translateY(-110%) translateX(-10%);
 
+    transition: background-color 0.3s;
+    color:white;
+}
+.deleteBtn p{
+    transform: translateY(-22%) translateX(-18%);
+}
+.deleteBtn:hover {
+    background-color: var(--light-blue);
+  }
 .login-btn:hover {
     background-color: var(--light-blue) !important;
     color: var(--dark-blue);
     border: solid 1px var(--dark-blue);
     font-weight: 600;
 }
+.croppedImage{
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    
+}
+.croppedImage img{
+    width:100%;
+    margin-top: 5%;
+    
+    
+}
+.croppedImage img:hover{
+    width:100%;
+    margin-top: 5%;
+}
+.imgContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.imgBtn{
+    position:absolute;
+    display:none;
+    background-color: none;
+    text-align: center;
+}
+.imgContainer:hover .imgBtn{
+    display:flex;
+}
+.imageUpload{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.imageUpload button{
+    margin-top: 2%;
+}
 .lb {
     display: block;
 }
