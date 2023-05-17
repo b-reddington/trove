@@ -27,7 +27,14 @@ query getTrips {
   trips {
     _id
     location
+    season
     traveller
+    restaurant {
+      name
+    }
+    activities {
+      name
+    }
     createdAt
     photos {
       url
@@ -37,29 +44,30 @@ query getTrips {
 
 // Query single trip - for the trip page
 export const QUERY_SINGLE_TRIP = gql`
-trip(_id: $id) {
-  _id
-  traveller
-  location
-  season
-  createdAt
-  likes
-  restaurants {
-    name
-  }
-  activities {
-    name
-  }
-  photos {
-    url
-  }
-  comments {
-    commenter
-    commentText
+query getSingleTrip($tripId: ID!) {
+  trip(_id: $id) {
+    _id
+    traveller
+    location
+    season
     createdAt
+    likes
+    restaurants {
+      name
+    }
+    activities {
+      name
+    }
+    photos {
+      url
+    }
+    comments {
+      commenter
+      commentText
+      createdAt
+    }
   }
-}
-`
+}`
 ;
 
 // Query current user with their trips - for my profile
