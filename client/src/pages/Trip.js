@@ -1,7 +1,8 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_TRIP } from '../utils/queries';
+import { DELETE_TRIP } from '../utils/mutations';
 import Auth from '../utils/auth'
 
 export default function Trip() {
@@ -14,6 +15,12 @@ export default function Trip() {
     const trip = data?.trip || [];
     const activities = data?.trip.activities || [];
     const restaurants = data?.trip.restaurants || [];
+
+    // for deleting trips
+    const [deleteTrip, { error }] = useMutation(DELETE_TRIP, {
+        variables: { id: _id }
+    });
+
 
     return (
         <div>
@@ -37,7 +44,7 @@ export default function Trip() {
 
             {trip.traveller === Auth.getProfile().data.username ? (
                 <div>
-                    <button>Delete Post</button>
+                    <button onClick={deleteTrip}>Delete Post</button>
                     <button>Edit Post</button>
                 </div>
             ) : null}
