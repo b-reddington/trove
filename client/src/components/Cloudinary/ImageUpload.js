@@ -46,7 +46,7 @@ const ImageUpload = (props) => {
     setImages(newImages);
   };
   return (
-    <div>
+    <div className='imageUpload'>
       <button className="btn btn-primary" onClick={uploadImageWidget}>
         Upload Image
       </button>
