@@ -29,7 +29,7 @@ export const LOGIN_USER = gql`
 // create a new trip
 export const ADD_TRIP = gql`
   mutation addTrip($location: String!, $season: String, $restaurants: [RestaurantInput], $activities: [ActivityInput], $photos: [String]) {
-    addTrip(location: $location, season: $season) {
+    addTrip(location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
       _id
       traveller
       location
@@ -91,7 +91,7 @@ export const DELETE_TRIP = gql`
 
 // add likes
 export const ADD_LIKES = gql`
-  mutation addLikes(_id: ID!) {
+  mutation addLikes($id: ID!) {
     addLikes(_id: $id) {
       _id
       location
