@@ -79,15 +79,18 @@ query getSingleTrip($id: ID!) {
     createdAt
     likes
     restaurants {
+      _id
       name
     }
     activities {
+      _id
       name
     }
     photos {
       url
     }
     comments {
+      _id
       commenter
       commentText
       createdAt
