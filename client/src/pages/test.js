@@ -1,20 +1,23 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_SINGLE_TRIP } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
+import Auth from '../utils/auth';
 
 export default function Test() {
-    const { loading, data } = useQuery(QUERY_SINGLE_TRIP, {
+    const username = Auth.getProfile().username;
+    const { loading, data } = useQuery(QUERY_ME, {
         // pass URL parameter
-        variables: { id: "64629913348a7ac16139e3e9" },
+        variables: { username: username },
     });
     
-    const trip = data?.trip || [];
+    const me = data?.me || [];
 
     return (
         <div>
-            {console.log(trip)}
-            <h3>{trip.location}</h3>
-            <h3>{trip.createdAt}</h3>
+            {console.log(me)}
+            <h3>{me.username}</h3>
+            <h3>{me.trips[0].location}</h3>
+            <h3>{me.trips[0].season}</h3>
 
         </div>
     )
