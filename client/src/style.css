@@ -94,38 +94,57 @@ form p {
     width: 100%; 
   }
   
-  .inner-input button {
-    appearance: none;
-    display: none;
-    position: absolute;
-    top: 100%; 
-    right: 0;
-    transform: translateY(-107%);
-    
-    height: 2rem;
-    
-    transition: background-color 0.3s;
-  }
-  
   .inner-input:hover button {
     display: block;
   }
+
 /* End section */
-button {
+.button {
     width: fit-content !important;
     padding-left: 30px !important;
     padding-right: 30px !important;
     margin-bottom: 30px !important;
     /* margin: auto !important; */
 }
+.deleteBtn{
+    border-radius: 50px;
+    border:none;
+    height:30px !important;
+    width:30px !important;
+    font-size: 2.2em;
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    background-color: var(--dark-blue);
+    transform: translateY(-110%) translateX(-10%);
 
+    transition: background-color 0.3s;
+    color:white;
+}
+.deleteBtn p{
+    transform: translateY(-22%) translateX(-18%);
+}
+.deleteBtn:hover {
+    background-color: var(--light-blue);
+  }
 .login-btn:hover {
     background-color: var(--light-blue) !important;
     color: var(--dark-blue);
     border: solid 1px var(--dark-blue);
     font-weight: 600;
 }
-
+.croppedImage{
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    
+}
+.croppedImage img{
+    width:100%;
+    margin-top: 5%;
+}
 .lb {
     display: block;
 }

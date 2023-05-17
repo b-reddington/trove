@@ -71,14 +71,14 @@ function Post() {
                                 value={restaurant}
                                 onChange={(event) => handleRestaurantChange(index, event)}
                             />
-                            <button className="btn btn-primary" onClick={(event) => handleRemoveRestaurant(index, event)}>
-                                        -
-                                    </button>
+                            <button className="btn-primary deleteBtn" onClick={(event) => handleRemoveRestaurant(index, event)}>
+                                    <p>-</p>    
+                            </button>
                             </div>
                             </div>
                         </div>
                     ))}
-                    <button className="btn btn-primary lb" onClick={handleAddRestaurant}>+</button>
+                    <button className="btn btn-primary lb button" onClick={handleAddRestaurant}>+</button>
 
                     {activities.map((activity, index) => (
                         <div key={index}>
@@ -93,19 +93,19 @@ function Post() {
                                         value={activity}
                                         onChange={(event) => handleActivityChange(index, event)}
                                     />
-                                    <button className="btn btn-primary" onClick={(event) => handleRemoveActivity(index, event)}>
-                                        -
+                                    <button className="btn-primary deleteBtn" onClick={(event) => handleRemoveActivity(index, event)}>
+                                    <p>-</p>  
                                     </button>
                                 </div>
                             </div>
                         </div>
                     ))}
-                    <button className="btn btn-primary lb" onClick={handleAddActivity}>+</button>
+                    <button className="btn btn-primary lb button" onClick={handleAddActivity}>+</button>
                     <>
 
                         <CloudinaryUpload />
                     </>
-                    <button className="btn btn-block pswd-btn login-btn" style={{ cursor: 'pointer' }} type="submit">
+                    <button className="btn btn-block pswd-btn login-btn button" style={{ cursor: 'pointer' }} type="submit">
                         Post
                     </button>
                 </Form>
