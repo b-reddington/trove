@@ -77,6 +77,7 @@ function Post() {
                     ))}
                     <button className="btn btn-primary lb" onClick={handleAddActivity}>+</button>
                     <>
+
                     <CloudinaryUpload/>
                     
                     </>
