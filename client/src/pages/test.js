@@ -1,21 +1,21 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { QUERY_SINGLE_TRIP } from '../utils/queries';
 
 export default function Test() {
-    const { loading, data } = useQuery(QUERY_USER, {
+    const { loading, data } = useQuery(QUERY_SINGLE_TRIP, {
         // pass URL parameter
-        variables: { username: "itsmegrace" },
+        variables: { id: "64629913348a7ac16139e3e9" },
     });
     
-    const user = data?.user || [];
+    const trip = data?.trip || [];
 
     return (
         <div>
-            {console.log(user)}
-            <h3>{user.username}</h3>
-            <h3>{user.email}</h3>
-            <h3>{user.trips[0].location}</h3>
+            {console.log(trip)}
+            <h3>{trip.location}</h3>
+            <h3>{trip.createdAt}</h3>
+
         </div>
     )
 }

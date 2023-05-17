@@ -70,7 +70,7 @@ query getTrips {
 
 // Query single trip - for the trip page
 export const QUERY_SINGLE_TRIP = gql`
-query getSingleTrip($tripId: ID!) {
+query getSingleTrip($id: ID!) {
   trip(_id: $id) {
     _id
     traveller
