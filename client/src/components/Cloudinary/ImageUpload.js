@@ -2,11 +2,13 @@ import { openUploadWidget } from "../../utils/CloudinaryService";
 import{useEffect, useState} from 'react';
 
 const ImageUpload = (props) => {
+  ;
     console.log('Image Upload' + props);
     const [images,setImages] = useState([]);
     useEffect(() => {
         console.log(images);
     });
+    
   const uploadImageWidget = (e) => {
     e.preventDefault();
     console.log('props'+props.cloud_name);
@@ -29,9 +31,19 @@ const ImageUpload = (props) => {
     );
     myUploadWidget.open();
   };
-
+  const deleteAllImages = async (e) => {  
+    e.preventDefault();
+    try {
+        setImages([]);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
   return (
     <div>
+      <button className="redButton" onClick={deleteAllImages}>
+                Delete all images
+      </button>
     <button className="greenButton" onClick={uploadImageWidget}>
       Upload Image
     </button>
