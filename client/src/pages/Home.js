@@ -13,7 +13,6 @@ function TripsList() {
     return (
       <div>
         <h2>PUBLIC POSTS</h2>
-        {console.log(trips)}
 
         <div className="d-flex flex-wrap justify-content-around gap-1">
           {

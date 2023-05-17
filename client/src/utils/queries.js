@@ -10,16 +10,32 @@ export const QUERY_USER = gql`
       trips {
         _id
         location
+        traveller
         season
-        createdAt
         likes
+        createdAt
+        activities {
+          _id
+          name
+        }
+        restaurants {
+          _id
+          name
+        }
         photos {
+          _id
           url
+        }
+        comments {
+          _id
+          commentText
+          commenter
+          createdAt
         }
       }
     }
-  }`
-;
+  }
+`;
 
 // Query all trips - for the homepage
 export const QUERY_TRIPS = gql`
