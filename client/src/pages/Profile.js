@@ -33,7 +33,7 @@ function Profile() {
           {/* Display the date and time when the trip was created */}
           <p>Created at: {Trip.createdAt}</p>
           {/* Iterate over each photo in the trip's photos array */}
-          {trip.photos.map((photo, index) => (
+          {Trip.photos.map((photo, index) => (
           // Display an image element for each photo, using the photo's URL as the source
          <img key={index} src={photo.url} alt="trip" />
 ))}

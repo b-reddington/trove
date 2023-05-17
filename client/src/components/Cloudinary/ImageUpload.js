@@ -2,7 +2,7 @@ import { openUploadWidget } from "../../utils/CloudinaryService";
 import { useEffect, useState } from 'react';
 
 const ImageUpload = (props) => {
-  ;
+  
   console.log('Image Upload' + props);
   const [images, setImages] = useState([]);
   useEffect(() => {

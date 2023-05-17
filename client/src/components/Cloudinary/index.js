@@ -1,10 +1,9 @@
 import { useState } from "react";
 import ImageUpload from "./ImageUpload";
-import CldGallery from "./CldGallery";
 import { Cloudinary } from "@cloudinary/url-gen";
 
 function CloudinaryUpload() {
-    const [imagesUploadedList, setImagesUploadedList] = useState([]);
+
 
     const cld = new Cloudinary({
         cloud: {
