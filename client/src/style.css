@@ -152,14 +152,21 @@ button {
 * {
     word-wrap: break-word;
 }
+
+.trip-link {
+    text-decoration: none;
+    color: var(--black);
+    width: 25%;
+}
+
 .postcard {
-    margin: 0;
+    margin: 0!important;
     margin-bottom: 0.25em;
     background-color: var(--light-blue);
     border: none;
     border-radius: 20px;
-    width: 25% !important;
-    height: 25% !important;
+    width: 90% !important;
+    /* height: 25% !important; */
     padding-top: 1.75em;
 }
 
