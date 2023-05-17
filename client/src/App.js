@@ -61,7 +61,7 @@ function App() {
                 element={<Post />}
               />
               <Route
-              path="/home"
+              path="/"
               element={<Home />}
               />
             </Routes>
