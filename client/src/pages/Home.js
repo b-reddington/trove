@@ -7,8 +7,6 @@ import PostCard from '../components/PostCard'
 function TripsList() {
     const { loading, data } = useQuery(QUERY_TRIPS);
     const trips = data?.trips || [];
-    // if (loading) return <p>Loading...</p>;
-    // if (error) return <p>Error :</p>;
   
     return (
       <div>
@@ -16,7 +14,7 @@ function TripsList() {
 
         <div className="d-flex flex-wrap justify-content-around gap-1">
           {
-            trips.map((trip) => (<PostCard key={trip._id} location={trip.location} traveller={trip.traveller} createdAt={trip.createdAt} />))
+            trips.map((trip) => (<PostCard key={trip._id} tripId={trip._id} location={trip.location} traveller={trip.traveller} createdAt={trip.createdAt} />))
           }
         </div>
       </div>
