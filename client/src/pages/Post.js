@@ -18,7 +18,12 @@ function Post() {
         event.preventDefault();
         setRestaurants([...restaurants, '']); // Add a new empty restaurant
     };
-
+    const handleRemoveRestaurant = (index, event) => {
+        event.preventDefault();
+        const newRestaurants = [...restaurants];
+        newRestaurants.splice(index, 1);;
+        setRestaurants(newRestaurants);
+    };
     const handleActivityChange = (index, event) => {
         const newActivities = [...activities];
         newActivities[index] = event.target.value;
@@ -29,7 +34,13 @@ function Post() {
         event.preventDefault();
         setActivities([...activities, '']); // Add a new empty activity
     };
-
+    const handleRemoveActivity = (index, event) => {
+        event.preventDefault();
+        const newActivities = [...activities];
+        newActivities.splice(index, 1);
+        setActivities(newActivities);
+    };
+    
 
     return (
         <div className="card">
@@ -49,7 +60,9 @@ function Post() {
 
                     {restaurants.map((restaurant, index) => (
                         <div key={index}>
+                            <div className="input-box">
                             <label htmlFor={`restaurant${index}`}>Restaurant {index + 1}</label>
+                            <div className='inner-input'>
                             <input
                                 type="text"
                                 className="form-control"
@@ -58,28 +71,39 @@ function Post() {
                                 value={restaurant}
                                 onChange={(event) => handleRestaurantChange(index, event)}
                             />
+                            <button className="btn btn-primary" onClick={(event) => handleRemoveRestaurant(index, event)}>
+                                        -
+                                    </button>
+                            </div>
+                            </div>
                         </div>
                     ))}
                     <button className="btn btn-primary lb" onClick={handleAddRestaurant}>+</button>
 
                     {activities.map((activity, index) => (
                         <div key={index}>
-                            <label htmlFor={`activity${index}`}>Activity {index + 1}</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id={`activity${index}`}
-                                placeholder="ex: Bazaruto Archipelago"
-                                value={activity}
-                                onChange={(event) => handleActivityChange(index, event)}
-                            />
+                            <div className="input-box">
+                                <label htmlFor={`activity${index}`}>Activity {index + 1}</label>
+                                <div className='inner-input'>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id={`activity${index}`}
+                                        placeholder="ex: Bazaruto Archipelago"
+                                        value={activity}
+                                        onChange={(event) => handleActivityChange(index, event)}
+                                    />
+                                    <button className="btn btn-primary" onClick={(event) => handleRemoveActivity(index, event)}>
+                                        -
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     ))}
                     <button className="btn btn-primary lb" onClick={handleAddActivity}>+</button>
                     <>
 
-                    <CloudinaryUpload/>
-                    
+                        <CloudinaryUpload />
                     </>
                     <button className="btn btn-block pswd-btn login-btn" style={{ cursor: 'pointer' }} type="submit">
                         Post
