@@ -39,23 +39,39 @@ const ImageUpload = (props) => {
       console.log(error.message);
     }
   }
+  const deleteImage = (event,index) => {
+    event.preventDefault();
+    const newImages = [...images];
+    newImages.splice(index, 1);
+    setImages(newImages);
+};
   return (
     <div>
-      <button className="btn btn-primary" onClick={uploadImageWidget}>
-        Upload Image
-      </button>
-      <button className="btn btn-danger" onClick={deleteAllImages}>
-        Delete all images
-      </button>
-      
-      <div className="croppedImage">
-        {images.length ? (
-          images.map(image => {
-            return <img src={image} />
-          })
-        ) : (null)}
-      </div>
+    <button className="btn btn-primary" onClick={uploadImageWidget}>
+      Upload Image
+    </button>
+    <button className="btn btn-danger" onClick={deleteAllImages}>
+      Delete all images
+    </button>
+    
+    <div className="croppedImage">
+      {images.length ? (
+        images.map((image, index) => {
+          return (
+            <div key={index}>
+              <img src={image} alt={`Image ${index + 1}`} />
+              <button
+                className="btn btn-danger"
+                onClick={(event) => deleteImage(event,index)}
+              >
+                Delete
+              </button>
+            </div>
+          );
+        })
+      ) : null}
     </div>
+  </div>
   );
 };
 
