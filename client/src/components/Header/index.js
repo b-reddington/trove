@@ -12,7 +12,7 @@ function Navbar() {
         <Nav.Link className="nav-title" href="/">Trove</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/home">Home</Nav.Link>
+        <Nav.Link href="/">Home</Nav.Link>
       </Nav.Item>
       {/* if user is logged in display the following */}
       {Auth.loggedIn() ? (

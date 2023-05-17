@@ -13,14 +13,12 @@ function TripsList() {
     return (
       <div>
         <h2>PUBLIC POSTS</h2>
-        {trips.map((trip) => (
-          // <PostCard id={trip._id} location={trip.location} traveller={trip.traveller} createdAt={trip.createdAt} />
-          <div key={trip._id}>
-            <h2>{trip.location}</h2>
-            <p>Season: {trip.season}</p>
-            {/* Display other trip data as needed */}
-          </div>
-        ))}
+
+        <div className="d-flex flex-wrap justify-content-around gap-1">
+          {
+            trips.map((trip) => (<PostCard key={trip._id} location={trip.location} traveller={trip.traveller} createdAt={trip.createdAt} />))
+          }
+        </div>
       </div>
     );
 }
