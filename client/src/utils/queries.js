@@ -27,17 +27,27 @@ query getTrips {
   trips {
     _id
     location
-    season
     traveller
-    restaurant {
-      name
-    }
-    activities {
-      name
-    }
+    season
+    likes
     createdAt
+    activities {
+      _id
+      name
+    }
+    restaurants {
+      _id
+      name
+    }
     photos {
+      _id
       url
+    }
+    comments {
+      _id
+      commentText
+      commenter
+      createdAt
     }
   }
 }`;
