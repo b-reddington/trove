@@ -17,16 +17,23 @@ export default function Trip() {
     const restaurants = data?.trip.restaurants || [];
 
     // for deleting trips
-    const [deleteTrip, { error }] = useMutation(DELETE_TRIP, {
-        variables: { id: _id }
-    });
+    const [deleteTrip, { error }] = useMutation(DELETE_TRIP);
 
+    const deleteTripHandler = () => {
+        console.log(trip);
+        const { data } = deleteTrip({
+            variables: {
+                id: trip._id
+            }
+        })
+        window.location.replace('/')
+    }
 
     return (
         <div>
             <h2>{trip.location}</h2>
-            {console.log(activities)}
-            {console.log(restaurants)}
+            {/* {console.log(activities)}
+            {console.log(restaurants)} */}
 
             <div>
                 <h3>PLACES TO VISIT & THINGS TO DO</h3>
@@ -44,7 +51,7 @@ export default function Trip() {
 
             {trip.traveller === Auth.getProfile().data.username ? (
                 <div>
-                    <button onClick={deleteTrip}>Delete Post</button>
+                    <button onClick={deleteTripHandler}>Delete Post</button>
                     <button>Edit Post</button>
                 </div>
             ) : null}

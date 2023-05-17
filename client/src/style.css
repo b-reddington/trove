@@ -159,6 +159,11 @@ button {
     width: 25%;
 }
 
+.trip-link:hover {
+    text-decoration: none;
+    color: var(--black)
+}
+
 .postcard {
     margin: 0!important;
     margin-bottom: 0.25em;

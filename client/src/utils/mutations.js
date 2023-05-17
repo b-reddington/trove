@@ -81,10 +81,9 @@ mutation updateTrip($tripId: ID!, $location: String, $season: String, $restauran
 
 // delete a trip
 export const DELETE_TRIP = gql`
-    mutation deleteTrip($tripId: ID!) {
+    mutation deleteTrip($id: ID!) {
         deleteTrip(_id: $id) {
         _id
-        location
         }
     }
 `;
