@@ -6,6 +6,7 @@ import { DELETE_TRIP } from '../utils/mutations';
 import { ADD_LIKES } from '../utils/mutations';
 import Auth from '../utils/auth'
 import {Link} from 'react-router-dom'
+import Carousel from '../components/Carousel/Carousel';
 
 export default function Trip() {
     const { _id } = useParams();
@@ -17,7 +18,11 @@ export default function Trip() {
     const trip = data?.trip || [];
     const activities = data?.trip.activities || [];
     const restaurants = data?.trip.restaurants || [];
+    const images = data?.trip.photos || [];
+    
 
+    //Carousel
+    
     // for deleting trips
     const [deleteTrip, { error }] = useMutation(DELETE_TRIP);
 
@@ -41,6 +46,7 @@ export default function Trip() {
         console.error(err);
       }
     };
+    const imageUrls = photos.map((photo) => photo.url);
     return (
         <div>
             <h2>{trip.location}</h2>
@@ -51,7 +57,10 @@ export default function Trip() {
 
             {console.log(trip)}
 
-
+            <div>
+             <h1>React Carousel</h1>
+            <Carousel images={images} />
+            </div>
             {/* <img src={trip.photos[0].url}></img> */}
             
             {/* {console.log(activities)}
