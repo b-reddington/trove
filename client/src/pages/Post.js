@@ -17,7 +17,6 @@ function Post() {
     const [activities, setActivities] = useState([]);
     const [activityName, setActivityName] = useState('');
     const [photos, setPhotos] = useState([]);
-
     useEffect(() => {
         console.log(season, location, restaurants, activities, photos);
     })
@@ -40,14 +39,12 @@ function Post() {
         setRestaurants([...restaurants, {name: restaurantName}]);
         setRestaurantName('');
     };
-
     const handleRemoveRestaurant = (index, event) => {
         event.preventDefault();
         const newRestaurants = [...restaurants];
         newRestaurants.splice(index, 1);;
         setRestaurants(newRestaurants);
     };
-
     const handleActivityChange = (index, event) => {
         // const newActivities = [...activities, { name: event.target.value }];
         // setActivities(newActivities);
@@ -59,13 +56,13 @@ function Post() {
         setActivities([...activities, {name: activityName}]);
         setActivityName('');
     };
-
     const handleRemoveActivity = (index, event) => {
         event.preventDefault();
         const newActivities = [...activities];
         newActivities.splice(index, 1);
         setActivities(newActivities);
     };
+  
 
     const [addTrip, { error }] = useMutation(ADD_TRIP, {
         update(cache, { data: { addTrip } }) {
@@ -106,25 +103,20 @@ function Post() {
                     photos,
                     // traveller: Auth.getProfile().data.username,
                 },
-            })
-            
-            window.location.replace('/');
+            });
 
             setLocation('');
             setActivities([]);
             setRestaurants([]);
-            
-            
         } catch (err) {
             console.error(err);
         }
-        
     };
 
     return (
         <div className="card">
             <div className="card-body">
-                <h2 className="text-center">Share Your Vacation</h2>
+                <h2 className="text-center">Plan a Vacation</h2>
                 <Form onSubmit={handleFormSubmit}>
                     <label htmlFor="location">Location</label>
                     <input
@@ -137,7 +129,7 @@ function Post() {
                         required
                     />
 
-                    <Form.Label>Season</Form.Label>
+                    <Form.Label>Preferred Season</Form.Label>
                     <Form.Select
                         value={season}
                         onChange={handleSeasonChange}
@@ -169,9 +161,8 @@ function Post() {
                             </div>
                         </div>
                     ))}
-
                     <button className="btn btn-primary lb" onClick={handleAddRestaurant}>
-                        + Add Restaurant
+                        +
                     </button>
 
                     {activities.map((activity, index) => (
@@ -187,14 +178,11 @@ function Post() {
                             />
                         </div>
                     ))}
-
                     <button className="btn btn-primary lb" onClick={handleAddActivity}>
-                        + Add Activity
+                        +
                     </button>
-
                     <CloudinaryUpload 
                     updatePhotos={updatePhotos}/>
-                    
                     <button
                         className="btn btn-block pswd-btn login-btn"
                         style={{ cursor: 'pointer' }}
