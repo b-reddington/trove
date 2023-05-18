@@ -111,9 +111,9 @@ export default function Trip() {
             {Auth.loggedIn() && trip.traveller === Auth.getProfile().data.username ? (
                 <div>
                     <button onClick={deleteTripHandler}>Delete Trip</button>
-                    <Link to={`/trips/edit/${trip._id}`}>
+                    {/* <Link to={`/trips/edit/${trip._id}`}>
                         <button>Edit Trip</button>
-                    </Link>
+                    </Link> */}
                 </div>
             ) : null}
         </div>

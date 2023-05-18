@@ -87,10 +87,10 @@ function App() {
                 element={<Trip />}
               />
 
-              <Route
+              {/* <Route
                 path="/trips/edit/:_id"
                 element={<EditTrip />}
-              />
+              /> */}
 
               <Route
                 path="/profiles/:username"
