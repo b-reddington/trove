@@ -25,7 +25,7 @@ const ImageUpload = (props) => {
           console.log(result);
           setImages([...images, result.info.url])
           console.log('pubID   ' + result.info.public_id);
-
+          props.onImageUpload(result.info.url)
         }
       }
     );

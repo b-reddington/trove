@@ -19,7 +19,7 @@ export default function Trip() {
     const activities = data?.trip.activities || [];
     const restaurants = data?.trip.restaurants || [];
     const images = data?.trip.photos || [];
-    
+    console.log(images);
 
     //Carousel
     
@@ -46,7 +46,7 @@ export default function Trip() {
         console.error(err);
       }
     };
-    const imageUrls = photos.map((photo) => photo.url);
+
     return (
         <div>
             <h2>{trip.location}</h2>
