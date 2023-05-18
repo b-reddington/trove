@@ -19,11 +19,11 @@ export default function CarouselImg({ images = [] }) {
   return (
     
     
-    <Carousel>
+    <Carousel className='w-100 d-block mx-auto' variant='dark'>
     {images.map((img)=>(
         <Carousel.Item key={img._id}>
             <img
-            className="d-block w-100"
+            className="d-block mx-auto w-75"
             src={img.url}
             />
         </Carousel.Item>
