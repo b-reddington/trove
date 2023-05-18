@@ -14,7 +14,7 @@ const CommentForm = ({ tripId }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    
     try {
       const { data } = await addComment({
         variables: {
@@ -23,7 +23,7 @@ const CommentForm = ({ tripId }) => {
           commentAuthor: Auth.getProfile().data.username,
         },
       });
-
+      
       setCommentText('');
     } catch (err) {
       console.error(err);

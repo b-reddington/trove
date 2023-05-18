@@ -2,11 +2,12 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_TRIP } from '../utils/queries';
-import { DELETE_TRIP } from '../utils/mutations';
-import { ADD_LIKES } from '../utils/mutations';
+import { DELETE_TRIP, ADD_LIKES, DELETE_COMMENT } from '../utils/mutations';
 import Auth from '../utils/auth'
 import {Link} from 'react-router-dom'
 import Carousel from '../components/Carousel/Carousel';
+import CommentList from '../components/CommentList';
+import CommentForm from '../components/CommentForm';
 
 export default function Trip() {
     const { _id } = useParams();
@@ -46,7 +47,26 @@ export default function Trip() {
         console.error(err);
       }
     };
+        // deleting comments
+        const [deleteComment, { e }] = useMutation(DELETE_COMMENT);
 
+        const handleDeleteComment = async (event) => {
+            event.preventDefault();
+            try {
+                await deleteComment({
+                    variables: {
+                        tripId: trip._id,
+                        commentId: event.target.id
+                    }
+                })
+            } catch (err) {
+                console.log(err);
+            }
+    
+            console.log(event.target.id)
+            console.log(trip._id)
+    
+        }
     return (
         <div className='p-3' >
             <h2>{trip.location}</h2>
@@ -65,7 +85,7 @@ export default function Trip() {
             {/* {console.log(activities)}
             {console.log(restaurants)} */}
 
-            <div>
+            <div className='mt-4'>
                 <h3>PLACES TO VISIT & THINGS TO DO</h3>
                 <ul>
                     {activities.map((act) => (<li key={act._id}>{act.name}</li>))}
@@ -78,13 +98,22 @@ export default function Trip() {
                     {restaurants.map((r) => (<li key={r._id}>{r.name}</li>))}
                 </ul>
             </div>
-
+            <div>
+                <h3>COMMENTS</h3>
+                <div>
+                    <CommentList comments={trip.comments} commentDeleter={handleDeleteComment} />
+                </div>
+                <div>
+                    <CommentForm tripId={trip._id} />
+                </div>
+            </div>
             {trip.traveller === Auth.getProfile().data.username ? (
                 <div>
-                    <button onClick={deleteTripHandler}>Delete Post</button>
+                    <button className="btn btn-danger mt-5" onClick={deleteTripHandler}>Delete Post</button>
                     {/* <button>Edit Post</button> */}
                 </div>
             ) : null}
+            
         </div>
     )
 }
