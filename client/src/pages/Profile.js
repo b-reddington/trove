@@ -32,6 +32,7 @@ export default function Profile() {
   return (
     <div>
       <h2>See {user.username}'s trips</h2>
+      <h4>Total trips: {trips.length}</h4>
       {console.log(user)}
       {/* {console.log(trips)} */}
 

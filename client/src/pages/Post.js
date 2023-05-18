@@ -5,7 +5,7 @@ import { ADD_TRIP } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import { QUERY_TRIPS, QUERY_ME } from '../utils/queries';
 import CloudinaryUpload from '../components/Cloudinary';
-
+import {useNavigate} from 'react-router-dom';
 import Auth from '../utils/auth';
 
 function Post() {
@@ -17,9 +17,16 @@ function Post() {
     const [activities, setActivities] = useState([]);
     const [activityName, setActivityName] = useState('');
     const [photos, setPhotos] = useState([]);
+    const [redirect, setRedirect] = useState(false);
     useEffect(() => {
         console.log(season, location, restaurants, activities, photos);
     })
+    const navigate = useNavigate();
+    useEffect(()=>{
+        if (redirect){
+            navigate('/me',{replace:true})
+        }
+    }, [redirect])
     const handleLocationChange = (event) => {
         setLocation(event.target.value);
     };
@@ -69,26 +76,26 @@ function Post() {
     }
 
 
-    const [addTrip, { error }] = useMutation(ADD_TRIP, {
-        update(cache, { data: { addTrip } }) {
-            try {
-                const { trips } = cache.readQuery({ query: QUERY_TRIPS });
+    const [addTrip, { error }] = useMutation(ADD_TRIP)
+    //     update(cache, { data: { addTrip } }) {
+    //         try {
+    //             const { trips } = cache.readQuery({ query: QUERY_TRIPS });
 
-                cache.writeQuery({
-                    query: QUERY_TRIPS,
-                    data: { trips: [addTrip, ...trips] },
-                });
-            } catch (err) {
-                console.error(err);
-            }
+    //             cache.writeQuery({
+    //                 query: QUERY_TRIPS,
+    //                 data: { trips: [addTrip, ...trips] },
+    //             });
+    //         } catch (err) {
+    //             console.error(err);
+    //         }
 
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({
-                query: QUERY_ME,
-                data: { me: { ...me, trips: [...me.trips, addTrip] } },
-            });
-        },
-    });
+    //         const { me } = cache.readQuery({ query: QUERY_ME });
+    //         cache.writeQuery({
+    //             query: QUERY_ME,
+    //             data: { me: { ...me, trips: [...me.trips, addTrip] } },
+    //         });
+    //     },
+    // });
 
 
 
@@ -106,11 +113,13 @@ function Post() {
                     photos,
                     // traveller: Auth.getProfile().data.username,
                 },
+        
             });
 
             setLocation('');
             setActivities([]);
             setRestaurants([]);
+            setRedirect(true);
         } catch (err) {
             console.error(err);
         }
