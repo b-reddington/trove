@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Post from './pages/Post';
 import Header from './components/Header';
 import Home from './pages/Home';
+
 import Trip from './pages/Trip';
 import Profile from './pages/Profile'
 
@@ -67,9 +68,17 @@ function App() {
                 element={<Post />}
               />
               <Route
+                path="/"
+                element={<Home />}
+              /><Route
+              path="/profile"
+              element={<Profile />}
+            />
+              <Route
                 path="/trips/:_id"
                 element={<Trip />}
               />
+
               <Route
                 path="/profiles/:username"
                 element={<Profile />}
@@ -78,6 +87,7 @@ function App() {
                 path="/me"
                 element={<Profile />}
               />
+
             </Routes>
             
           </div>

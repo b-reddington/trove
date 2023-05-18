@@ -35,6 +35,7 @@ export default function Profile() {
       {console.log(user)}
       {/* {console.log(trips)} */}
 
+
       <div className="d-flex flex-wrap justify-content-around gap-1">
         {
           trips.map((trip) => (<PostCard key={trip._id} tripId={trip._id} location={trip.location} traveller={trip.traveller} createdAt={trip.createdAt} />))

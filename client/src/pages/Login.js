@@ -75,7 +75,7 @@ const Login = (props) => {
                 />
                 <p>Don't have an account yet?<a className="lb" href="/register">Click here to create one!</a></p>
                 <button
-                  className="btn btn-block pswd-btn login-btn"
+                  className="btn btn-block pswd-btn login-btn button"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
