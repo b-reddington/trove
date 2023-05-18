@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_TRIP } from '../utils/queries';
-import { DELETE_TRIP } from '../utils/mutations';
-import { ADD_LIKES } from '../utils/mutations';
+import { DELETE_TRIP, ADD_LIKES, DELETE_COMMENT } from '../utils/mutations';
 import Auth from '../utils/auth'
 import { Link } from 'react-router-dom'
 
@@ -25,7 +24,7 @@ export default function Trip() {
     const [deleteTrip, { error }] = useMutation(DELETE_TRIP);
 
     const deleteTripHandler = () => {
-        console.log(trip);
+        // console.log(trip);
         const { data } = deleteTrip({
             variables: {
                 id: trip._id
@@ -37,7 +36,7 @@ export default function Trip() {
     // for adding likes
     const [addLike, { err }] = useMutation(ADD_LIKES);
 
-    const handleVote = async () => {
+    const handleLikes = async () => {
         try {
             await addLike({
                 variables: { id: trip._id},
@@ -47,16 +46,31 @@ export default function Trip() {
         }
     };
 
-    // for the edit modal
-    const [show, setShow] = useState(false);
+    // deleting comments
+    const [deleteComment, { e }] = useMutation(DELETE_COMMENT);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleDeleteComment = async (event) => {
+        event.preventDefault();
+        try {
+            await deleteComment({
+                variables: {
+                    tripId: trip._id,
+                    commentId: event.target.id
+                }
+            })
+        } catch (err) {
+            console.log(err);
+        }
+
+        console.log(event.target.id)
+        console.log(trip._id)
+
+    }
 
     return (
         <div>
             <h2>{trip.location}</h2>
-            <button className="btn btn-primary" onClick={(event) => handleVote()}>
+            <button className="btn btn-primary" onClick={(event) => handleLikes()}>
                 <p>Like: {trip.likes}</p>    
             </button>
             <h3>Season: {trip.season}</h3>
@@ -87,7 +101,7 @@ export default function Trip() {
             <div>
                 <h3>COMMENTS</h3>
                 <div>
-                    <CommentList comments={trip.comments} />
+                    <CommentList comments={trip.comments} commentDeleter={handleDeleteComment} />
                 </div>
                 <div>
                     <CommentForm tripId={trip._id} />

@@ -33,12 +33,19 @@ export default function EditTrip() {
     const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
+        setLocation(trip.location);
+        setSeason(trip.season);
+        setRestaurants(rest);
+        setActivities(act);
+        setPhotos(pic)
+
         console.log(season, location, restaurants, activities, photos);
-    });
+    }, []);
 
     const handleLocationChange = (event) => {
         setLocation(event.target.value);
     };
+
 
     const handleSeasonChange = (event) => {
         setSeason(event.target.value);
@@ -52,7 +59,7 @@ export default function EditTrip() {
 
     const handleAddRestaurant = (event) => {
         event.preventDefault();
-        setRestaurants([...rest, ...restaurants, {name: restaurantName}]);
+        setRestaurants([...restaurants, {name: restaurantName}]);
         setRestaurantName('');
     };
 
@@ -136,8 +143,8 @@ export default function EditTrip() {
         <Form onSubmit={handleFormSubmit}>
             <h2>Edit your trip</h2>
 
-            {console.log(rest)}
-            {console.log(act)}
+            {console.log(restaurants)}
+            {console.log(activities)}
             {console.log(pic)}
             <label htmlFor="location">Location</label>
             <input
@@ -163,17 +170,6 @@ export default function EditTrip() {
             </Form.Select>
 
             <h3>Restaurants</h3>
-
-            <ul>
-                {
-                    rest.map((food, index) => (
-                        <li key={index}>
-                            <span>{food.name}</span>
-                            <button onClick={(e)=>handleRemoveRestaurant(index, e)}>-</button>
-                        </li>
-                    ))
-                }
-            </ul>
 
             {restaurants.map((restaurant, index) => (
                 <div key={index}>

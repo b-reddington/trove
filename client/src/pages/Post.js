@@ -106,16 +106,19 @@ function Post() {
                     photos,
                     // traveller: Auth.getProfile().data.username,
                 },
-            });
+            })
+            
+            window.location.replace('/');
 
             setLocation('');
             setActivities([]);
             setRestaurants([]);
             
-            window.location.replace('/')
+            
         } catch (err) {
             console.error(err);
         }
+        
     };
 
     return (
