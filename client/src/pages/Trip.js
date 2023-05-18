@@ -5,10 +5,10 @@ import { QUERY_SINGLE_TRIP } from '../utils/queries';
 import { DELETE_TRIP } from '../utils/mutations';
 import { ADD_LIKES } from '../utils/mutations';
 import Auth from '../utils/auth'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import Button from 'react-bootstrap/Button'
-// IMPORT EDIT MODAL HERE!!!
+import CommentList from '../components/CommentList';
+import CommentForm from '../components/CommentForm';
 
 export default function Trip() {
     const { _id } = useParams();
@@ -57,9 +57,10 @@ export default function Trip() {
         <div>
             <h2>{trip.location}</h2>
             <button className="btn btn-primary" onClick={(event) => handleVote()}>
-                                    <p>Like: {trip.likes}</p>    
-                            </button>
-            <h3><Link to={`/profiles/${trip.traveller}`}>{trip.traveller}</Link></h3>
+                <p>Like: {trip.likes}</p>    
+            </button>
+            <h3>Season: {trip.season}</h3>
+            <h3>Traveller: <Link to={`/profiles/${trip.traveller}`}>{trip.traveller}</Link></h3>
 
             {console.log(trip)}
 
@@ -83,10 +84,22 @@ export default function Trip() {
                 </ul>
             </div>
 
+            <div>
+                <h3>COMMENTS</h3>
+                <div>
+                    <CommentList comments={trip.comments} />
+                </div>
+                <div>
+                    <CommentForm  />
+                </div>
+            </div>
+
             {Auth.loggedIn() && trip.traveller === Auth.getProfile().data.username ? (
                 <div>
                     <button onClick={deleteTripHandler}>Delete Trip</button>
-                    <Button onClick={handleShow}>Edit Trip</Button>
+                    <Link to={`/trips/edit/${trip._id}`}>
+                        <button>Edit Trip</button>
+                    </Link>
                 </div>
             ) : null}
         </div>
