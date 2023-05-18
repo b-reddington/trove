@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_TRIP } from '../utils/queries';
@@ -6,6 +6,8 @@ import { DELETE_TRIP } from '../utils/mutations';
 import { ADD_LIKES } from '../utils/mutations';
 import Auth from '../utils/auth'
 import {Link} from 'react-router-dom'
+
+import Button from 'react-bootstrap/Button'
 
 export default function Trip() {
     const { _id } = useParams();
@@ -30,17 +32,26 @@ export default function Trip() {
         })
         window.location.replace('/')
     }
+
+    // for adding likes
     const [addLike, { err }] = useMutation(ADD_LIKES);
 
     const handleVote = async () => {
-      try {
-        await addLike({
-          variables: { id: trip._id},
-        });
-      } catch (err) {
-        console.error(err);
-      }
+        try {
+            await addLike({
+                variables: { id: trip._id},
+            });
+        } catch (err) {
+            console.error(err);
+        }
     };
+
+    // for the edit modal
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         <div>
             <h2>{trip.location}</h2>
@@ -73,8 +84,8 @@ export default function Trip() {
 
             {trip.traveller === Auth.getProfile().data.username ? (
                 <div>
-                    <button onClick={deleteTripHandler}>Delete Post</button>
-                    <button>Edit Post</button>
+                    <button onClick={deleteTripHandler}>Delete Trip</button>
+                    <Button onClick={handleShow}>Edit Trip</Button>
                 </div>
             ) : null}
         </div>

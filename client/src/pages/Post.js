@@ -42,8 +42,6 @@ function Post() {
         newActivities.splice(index, 1);
         setActivities(newActivities);
     };
-  
-
 
     return (
         <div className="card">
