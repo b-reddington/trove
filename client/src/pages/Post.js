@@ -62,7 +62,7 @@ function Post() {
         newActivities.splice(index, 1);
         setActivities(newActivities);
     };
-  
+
 
     const [addTrip, { error }] = useMutation(ADD_TRIP, {
         update(cache, { data: { addTrip } }) {

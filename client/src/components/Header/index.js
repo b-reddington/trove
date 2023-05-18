@@ -21,7 +21,7 @@ function Navbar() {
           <Nav.Link href="/me">Profile</Nav.Link>
         </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/new-post">Create Post</Nav.Link>
+            <Nav.Link href="/new-post">Create Trip</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>

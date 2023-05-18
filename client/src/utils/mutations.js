@@ -28,10 +28,10 @@ export const LOGIN_USER = gql`
 
 // create a new trip
 export const ADD_TRIP = gql`
- mutation Mutation($location: String!, $season: String!, $restaurants: [RestaurantInput], $activities: [ActivityInput], $photos: [PhotoInput]) {
-  addTrip(location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
-    location
-  }
+    mutation Mutation($location: String!, $season: String!, $restaurants: [RestaurantInput], $activities: [ActivityInput], $photos: [PhotoInput]) {
+    addTrip(location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
+        location
+    }
 }`;
 
 
