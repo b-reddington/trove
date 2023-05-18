@@ -8,6 +8,7 @@ import Auth from '../utils/auth'
 import {Link} from 'react-router-dom'
 
 import Button from 'react-bootstrap/Button'
+// IMPORT EDIT MODAL HERE!!!
 
 export default function Trip() {
     const { _id } = useParams();
@@ -82,7 +83,7 @@ export default function Trip() {
                 </ul>
             </div>
 
-            {trip.traveller === Auth.getProfile().data.username ? (
+            {Auth.loggedIn() && trip.traveller === Auth.getProfile().data.username ? (
                 <div>
                     <button onClick={deleteTripHandler}>Delete Trip</button>
                     <Button onClick={handleShow}>Edit Trip</Button>
