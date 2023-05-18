@@ -22,6 +22,7 @@ const ImageUpload = (props) => {
         if (!error && result.event === "success"){
             console.log(result);
            setImages([...images,result.info.url])
+           props.updatePhotos(result.info.url);
            console.log('pubID   '+result.info.public_id);
 
         }

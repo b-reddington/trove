@@ -1,50 +1,131 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-
+import { ADD_TRIP } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { QUERY_TRIPS, QUERY_ME } from '../utils/queries';
 import CloudinaryUpload from '../components/Cloudinary';
-let seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
+
+import Auth from '../utils/auth';
 
 function Post() {
-    const [restaurants, setRestaurants] = useState(['']); // Initial state with one restaurant
-    const [activities, setActivities] = useState(['']); // Initial state with one activity
+    const seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
+    const [location, setLocation] = useState('');
+    const [season, setSeason] = useState('');
+    const [restaurants, setRestaurants] = useState([]);
+    const [restaurantName, setRestaurantName] = useState('');
+    const [activities, setActivities] = useState([]);
+    const [activityName, setActivityName] = useState('');
+    const [photos, setPhotos] = useState([]);
+    useEffect(() => {
+        console.log(season, location, restaurants, activities, photos);
+    })
+    const handleLocationChange = (event) => {
+        setLocation(event.target.value);
+    };
+
+    const handleSeasonChange = (event) => {
+        setSeason(event.target.value);
+    };
 
     const handleRestaurantChange = (index, event) => {
-        const newRestaurants = [...restaurants];
-        newRestaurants[index] = event.target.value;
-        setRestaurants(newRestaurants);
+        // const newRestaurants = [...restaurants, {name: event.target.value}];
+        // setRestaurants(newRestaurants);
+        setRestaurantName(event.target.value);
     };
 
     const handleAddRestaurant = (event) => {
         event.preventDefault();
-        setRestaurants([...restaurants, '']); // Add a new empty restaurant
+        setRestaurants([...restaurants, {name: restaurantName}]);
+        setRestaurantName('');
     };
 
     const handleActivityChange = (index, event) => {
-        const newActivities = [...activities];
-        newActivities[index] = event.target.value;
-        setActivities(newActivities);
+        // const newActivities = [...activities, { name: event.target.value }];
+        // setActivities(newActivities);
+        setActivityName(event.target.value);
     };
 
     const handleAddActivity = (event) => {
         event.preventDefault();
-        setActivities([...activities, '']); // Add a new empty activity
+        setActivities([...activities, {name: activityName}]);
+        setActivityName('');
     };
 
+    const [addTrip, { error }] = useMutation(ADD_TRIP, {
+        update(cache, { data: { addTrip } }) {
+            try {
+                const { trips } = cache.readQuery({ query: QUERY_TRIPS });
+
+                cache.writeQuery({
+                    query: QUERY_TRIPS,
+                    data: { trips: [addTrip, ...trips] },
+                });
+            } catch (err) {
+                console.error(err);
+            }
+
+            const { me } = cache.readQuery({ query: QUERY_ME });
+            cache.writeQuery({
+                query: QUERY_ME,
+                data: { me: { ...me, trips: [...me.trips, addTrip] } },
+            });
+        },
+    });
+
+    const updatePhotos = (photo) => {
+        setPhotos([...photos, { url: photo}])
+    }
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const newRestaurant = restaurants.filter(r => r.name !== '');
+            const newActivity = activities.filter(a => a.name !== '');
+            const { data } = await addTrip({
+                variables: {
+                    location,
+                    season,
+                    restaurants: newRestaurant,
+                    activities: newActivity,
+                    photos,
+                    // traveller: Auth.getProfile().data.username,
+                },
+            });
+
+            setLocation('');
+            setActivities([]);
+            setRestaurants([]);
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     return (
         <div className="card">
             <div className="card-body">
                 <h2 className="text-center">Plan a Vacation</h2>
-                <Form>
+                <Form onSubmit={handleFormSubmit}>
                     <label htmlFor="location">Location</label>
-                    <input type="text" className="form-control" id="location" placeholder="ex: Mozambique Coast" required />
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="location"
+                        placeholder="ex: Mozambique Coast"
+                        value={location}
+                        onChange={handleLocationChange}
+                        required
+                    />
+
                     <Form.Label>Preferred Season</Form.Label>
-                    <Form.Select required>
+                    <Form.Select
+                        value={season}
+                        onChange={handleSeasonChange}
+                        required
+                    >
                         <option>Select a season</option>
                         {seasons.map((season) => (
                             <option key={season}>{season}</option>
                         ))}
-
                     </Form.Select>
 
                     {restaurants.map((restaurant, index) => (
@@ -55,12 +136,14 @@ function Post() {
                                 className="form-control"
                                 id={`restaurant${index}`}
                                 placeholder="ex: Dhow Mozambique"
-                                value={restaurant}
+                                value={restaurantName}
                                 onChange={(event) => handleRestaurantChange(index, event)}
                             />
                         </div>
                     ))}
-                    <button className="btn btn-primary lb" onClick={handleAddRestaurant}>+</button>
+                    <button className="btn btn-primary lb" onClick={handleAddRestaurant}>
+                        +
+                    </button>
 
                     {activities.map((activity, index) => (
                         <div key={index}>
@@ -70,18 +153,21 @@ function Post() {
                                 className="form-control"
                                 id={`activity${index}`}
                                 placeholder="ex: Bazaruto Archipelago"
-                                value={activity}
+                                value={activityName}
                                 onChange={(event) => handleActivityChange(index, event)}
                             />
                         </div>
                     ))}
-                    <button className="btn btn-primary lb" onClick={handleAddActivity}>+</button>
-                    <>
-
-                    <CloudinaryUpload/>
-                    
-                    </>
-                    <button className="btn btn-block pswd-btn login-btn" style={{ cursor: 'pointer' }} type="submit">
+                    <button className="btn btn-primary lb" onClick={handleAddActivity}>
+                        +
+                    </button>
+                    <CloudinaryUpload 
+                    updatePhotos={updatePhotos}/>
+                    <button
+                        className="btn btn-block pswd-btn login-btn"
+                        style={{ cursor: 'pointer' }}
+                        type="submit"
+                    >
                         Post
                     </button>
                 </Form>

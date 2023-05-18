@@ -3,7 +3,7 @@ import ImageUpload from "./ImageUpload";
 import CldGallery from "./CldGallery";
 import { Cloudinary } from "@cloudinary/url-gen";
 
-function CloudinaryUpload() {
+function CloudinaryUpload({updatePhotos}) {
     const [imagesUploadedList, setImagesUploadedList] = useState([]);
 
     const cld = new Cloudinary({
@@ -36,6 +36,7 @@ function CloudinaryUpload() {
                 Delete all images
             </button>
             <ImageUpload
+                updatePhotos = {updatePhotos}
                 cloud_name={cld.cloudinaryConfig.cloud.cloudName}
                 upload_preset={cld.cloudinaryConfig.cloud.uploadPreset}
                 crop_preset={cld.cloudinaryConfig.cloud.cropping}
