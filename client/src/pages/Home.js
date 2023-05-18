@@ -10,7 +10,7 @@ function TripsList() {
   
     return (
       <div>
-        <h2>PUBLIC POSTS</h2>
+        <h2>EXPLORE TRIPS</h2>
 
         <div className="d-flex flex-wrap justify-content-around gap-1">
           {
