@@ -4,10 +4,12 @@ import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_TRIP } from '../utils/queries';
 import { DELETE_TRIP, ADD_LIKES, DELETE_COMMENT } from '../utils/mutations';
 import Auth from '../utils/auth'
-import { Link } from 'react-router-dom'
 
+import {Link} from 'react-router-dom'
+import Carousel from '../components/Carousel/Carousel';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
+
 
 export default function Trip() {
     const { _id } = useParams();
@@ -19,7 +21,11 @@ export default function Trip() {
     const trip = data?.trip || [];
     const activities = data?.trip.activities || [];
     const restaurants = data?.trip.restaurants || [];
+    const images = data?.trip.photos || [];
+    console.log(images);
 
+    //Carousel
+    
     // for deleting trips
     const [deleteTrip, { error }] = useMutation(DELETE_TRIP);
 
@@ -78,7 +84,10 @@ export default function Trip() {
 
             {console.log(trip)}
 
-
+            <div>
+             <h1>React Carousel</h1>
+            <Carousel images={images} />
+            </div>
             {/* <img src={trip.photos[0].url}></img> */}
             
             {/* {console.log(activities)}

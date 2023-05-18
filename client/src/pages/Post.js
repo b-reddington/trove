@@ -63,6 +63,11 @@ function Post() {
         setActivities(newActivities);
     };
 
+    const updatePhotos = (photo) => {
+        setPhotos([...photos, { url: photo}])
+        console.log('photos here'+photos)
+    }
+
 
     const [addTrip, { error }] = useMutation(ADD_TRIP, {
         update(cache, { data: { addTrip } }) {
@@ -85,9 +90,7 @@ function Post() {
         },
     });
 
-    const updatePhotos = (photo) => {
-        setPhotos([...photos, { url: photo}])
-    }
+
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
