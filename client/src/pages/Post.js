@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-
+import { useMutation } from '@apollo/client';
+import { ADD_TRIP } from '../utils/mutations';
 import CloudinaryUpload from '../components/Cloudinary';
 let seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
 
 function Post() {
+    
     const [restaurants, setRestaurants] = useState(['']); // Initial state with one restaurant
     const [activities, setActivities] = useState(['']); // Initial state with one activity
 
@@ -40,7 +42,8 @@ function Post() {
         newActivities.splice(index, 1);
         setActivities(newActivities);
     };
-    
+  
+
 
     return (
         <div className="card">
@@ -102,7 +105,6 @@ function Post() {
                     ))}
                     <button className="btn btn-primary lb button" onClick={handleAddActivity}>+</button>
                     <>
-
                         <CloudinaryUpload />
                     </>
                     <button className="btn btn-block pswd-btn login-btn button" style={{ cursor: 'pointer' }} type="submit">

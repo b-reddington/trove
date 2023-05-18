@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_TRIP } from '../utils/queries';
 import { DELETE_TRIP } from '../utils/mutations';
+import { ADD_LIKES } from '../utils/mutations';
 import Auth from '../utils/auth'
 import {Link} from 'react-router-dom'
 
@@ -29,14 +30,30 @@ export default function Trip() {
         })
         window.location.replace('/')
     }
+    const [addLike, { err }] = useMutation(ADD_LIKES);
 
+    const handleVote = async () => {
+      try {
+        await addLike({
+          variables: { id: trip._id},
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
     return (
         <div>
             <h2>{trip.location}</h2>
+            <button className="btn btn-primary" onClick={(event) => handleVote()}>
+                                    <p>Like: {trip.likes}</p>    
+                            </button>
             <h3><Link to={`/profiles/${trip.traveller}`}>{trip.traveller}</Link></h3>
 
             {console.log(trip)}
 
+
+            {/* <img src={trip.photos[0].url}></img> */}
+            
             {/* {console.log(activities)}
             {console.log(restaurants)} */}
 
