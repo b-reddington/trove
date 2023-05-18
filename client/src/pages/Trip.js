@@ -90,7 +90,7 @@ export default function Trip() {
                     <CommentList comments={trip.comments} />
                 </div>
                 <div>
-                    <CommentForm  />
+                    <CommentForm tripId={trip._id} />
                 </div>
             </div>
 
