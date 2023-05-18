@@ -18,7 +18,7 @@ function Navbar() {
       {Auth.loggedIn() ? (
         <>
         <Nav.Item>
-          <Nav.Link href="/profile">Profile</Nav.Link>
+          <Nav.Link href="/me">Profile</Nav.Link>
         </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/new-post">Create Post</Nav.Link>

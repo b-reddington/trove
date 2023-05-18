@@ -1,49 +1,47 @@
 // Importing necessary packages and files
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { Navigate, useParams } from 'react-router-dom';
+import { QUERY_ME, QUERY_USER } from '../utils/queries';
+import Auth from '../utils/auth'
+import PostCard from '../components/PostCard'
 
 // Creating a functional component called 'Profile'
-function Profile() {
-  // Using the useQuery hook from Apollo Client to fetch data
-  // QUERY_ME query retrieves data for the logged-in user
-  // loading is a boolean indicating if the request is in progress
-  // error will contain any error messages if an error occurred
-  // data is the response from the server
-  const { loading, error, data } = useQuery(QUERY_ME);
+export default function Profile() {
+  const { username: userParam } = useParams();
 
-  // If the request is still in progress, display a loading message
-  if (loading) return <p>Loading...</p>;
-  // If there was an error with the request, display an error message
-  if (error) return <p>Error: {error.message}</p>;
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+  })
 
-  // Once the data has loaded, render the user's trips
+  const user = data?.me || data?.user || {};
+
+  const trips = user.trips || [];
+
+  // goes to personal profile page if username is yours
+  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    return <Navigate to="/me" />
+  }
+
+  if (!user?.username) {
+    return (
+      <h4>Please log in or sign up!</h4>
+    )
+  }
+
   return (
     <div>
-      <h2>My Trips</h2>
-      {/* Iterate over each trip the user has */}
-      {data.me.trips.map((Trip) => (
-        <div key={Trip._id}>
-          {/* Display the location of the trip */}
-          <h3>{Trip.location}</h3>
-          {/* Display the season of the trip */}
-          <p>Season: {Trip.season}</p>
-          {/* Display the number of likes the trip has */}
-          <p>Likes: {Trip.likes}</p>
-          {/* Display the date and time when the trip was created */}
-          <p>Created at: {Trip.createdAt}</p>
-          {/* Iterate over each photo in the trip's photos array */}
-          {trip.photos.map((photo, index) => (
-          // Display an image element for each photo, using the photo's URL as the source
-         <img key={index} src={photo.url} alt="trip" />
-))}
+      <h2>See {user.username}'s trips</h2>
+      {console.log(user)}
+      {/* {console.log(trips)} */}
 
-          {/* Add more data to display as needed */}
-        </div>
-      ))}
+      <div className="d-flex flex-wrap justify-content-around gap-1">
+        {
+          trips.map((trip) => (<PostCard key={trip._id} tripId={trip._id} location={trip.location} traveller={trip.traveller} createdAt={trip.createdAt} />))
+        }
+      </div>
+
+      {console.log(user)}
     </div>
-  );
-}
-
-// Export the Profile component so it can be imported and used in other files
-export default Profile;
+  )
+};
