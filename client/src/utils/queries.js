@@ -18,8 +18,8 @@ export const QUERY_USER = gql`
         }
       }
     }
-  }`
-;
+  }
+`;
 
 // Query all trips - for the homepage
 export const QUERY_TRIPS = gql`
@@ -27,24 +27,34 @@ query getTrips {
   trips {
     _id
     location
-    season
     traveller
-    restaurant {
-      name
-    }
-    activities {
-      name
-    }
+    season
+    likes
     createdAt
+    activities {
+      _id
+      name
+    }
+    restaurants {
+      _id
+      name
+    }
     photos {
+      _id
       url
+    }
+    comments {
+      _id
+      commentText
+      commenter
+      createdAt
     }
   }
 }`;
 
 // Query single trip - for the trip page
 export const QUERY_SINGLE_TRIP = gql`
-query getSingleTrip($tripId: ID!) {
+query getSingleTrip($id: ID!) {
   trip(_id: $id) {
     _id
     traveller
@@ -53,15 +63,18 @@ query getSingleTrip($tripId: ID!) {
     createdAt
     likes
     restaurants {
+      _id
       name
     }
     activities {
+      _id
       name
     }
     photos {
       url
     }
     comments {
+      _id
       commenter
       commentText
       createdAt
@@ -88,5 +101,5 @@ export const QUERY_ME = gql`
         }
       }
     }
-  }`
-;
+  }
+`;

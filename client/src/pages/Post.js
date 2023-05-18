@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
+
 import { ADD_TRIP } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import { QUERY_TRIPS, QUERY_ME } from '../utils/queries';
@@ -38,7 +39,12 @@ function Post() {
         setRestaurants([...restaurants, {name: restaurantName}]);
         setRestaurantName('');
     };
-
+    const handleRemoveRestaurant = (index, event) => {
+        event.preventDefault();
+        const newRestaurants = [...restaurants];
+        newRestaurants.splice(index, 1);;
+        setRestaurants(newRestaurants);
+    };
     const handleActivityChange = (index, event) => {
         // const newActivities = [...activities, { name: event.target.value }];
         // setActivities(newActivities);
@@ -50,6 +56,13 @@ function Post() {
         setActivities([...activities, {name: activityName}]);
         setActivityName('');
     };
+    const handleRemoveActivity = (index, event) => {
+        event.preventDefault();
+        const newActivities = [...activities];
+        newActivities.splice(index, 1);
+        setActivities(newActivities);
+    };
+  
 
     const [addTrip, { error }] = useMutation(ADD_TRIP, {
         update(cache, { data: { addTrip } }) {
@@ -130,7 +143,9 @@ function Post() {
 
                     {restaurants.map((restaurant, index) => (
                         <div key={index}>
+                            <div className="input-box">
                             <label htmlFor={`restaurant${index}`}>Restaurant {index + 1}</label>
+                            <div className='inner-input'>
                             <input
                                 type="text"
                                 className="form-control"
@@ -139,6 +154,11 @@ function Post() {
                                 value={restaurantName}
                                 onChange={(event) => handleRestaurantChange(index, event)}
                             />
+                            <button className="btn-primary deleteBtn" onClick={(event) => handleRemoveRestaurant(index, event)}>
+                                    <p>-</p>    
+                            </button>
+                            </div>
+                            </div>
                         </div>
                     ))}
                     <button className="btn btn-primary lb" onClick={handleAddRestaurant}>
