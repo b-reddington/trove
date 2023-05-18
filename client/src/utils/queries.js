@@ -1,60 +1,92 @@
 import { gql } from '@apollo/client';
 
+// Query single user with their trips - for user profiles
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
       _id
       username
       email
-      thoughts {
+      trips {
         _id
-        thoughtText
+        location
+        season
         createdAt
+        likes
+        photos {
+          url
+        }
       }
     }
-  }
-`;
+  }`
+;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
-      _id
-      thoughtText
-      thoughtAuthor
+// Query all trips - for the homepage
+export const QUERY_TRIPS = gql`
+query getTrips {
+  trips {
+    _id
+    location
+    season
+    traveller
+    restaurant {
+      name
+    }
+    activities {
+      name
+    }
+    createdAt
+    photos {
+      url
+    }
+  }
+}`;
+
+// Query single trip - for the trip page
+export const QUERY_SINGLE_TRIP = gql`
+query getSingleTrip($tripId: ID!) {
+  trip(_id: $id) {
+    _id
+    traveller
+    location
+    season
+    createdAt
+    likes
+    restaurants {
+      name
+    }
+    activities {
+      name
+    }
+    photos {
+      url
+    }
+    comments {
+      commenter
+      commentText
       createdAt
     }
   }
-`;
+}`
+;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
-    }
-  }
-`;
-
+// Query current user with their trips - for my profile
 export const QUERY_ME = gql`
   query me {
     me {
       _id
       username
       email
-      thoughts {
+      trips {
         _id
-        thoughtText
-        thoughtAuthor
+        location
+        season
         createdAt
+        likes
+        photos {
+          url
+        }
       }
     }
-  }
-`;
+  }`
+;

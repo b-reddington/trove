@@ -19,6 +19,16 @@
             {"url": "https://cdn.britannica.com/13/177913-050-0802B78D/dhow-sailing-coast-Island-of-Mozambique.jpg"},
             {"url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Mozambique_%283912235854%29.jpg"},
             {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Chapel_of_Nossa_Senhora_de_Baluarte.jpg/2560px-Chapel_of_Nossa_Senhora_de_Baluarte.jpg"}
+        ],
+        "comments": [
+            {
+                "commenter": "janet_snakehole",
+                "commentText": "I want to go there!"
+            },
+            {
+                "commenter": "pawnee_goddess",
+                "commentText": "That sounds like a fun trip"
+            }
         ]
     },
     {
@@ -39,6 +49,12 @@
             {"url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Ngomon2.jpg"},
             {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Gate_in_Imperial_City%2C_Hu%E1%BA%BF_%28II%29.jpg/2560px-Gate_in_Imperial_City%2C_Hu%E1%BA%BF_%28II%29.jpg"},
             {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pavilion_of_Splendour.jpg/2560px-Pavilion_of_Splendour.jpg"}
+        ],
+        "comments": [
+            {
+                "commenter": "cones_of_dunshire",
+                "commentText": "I love pho"
+            }
         ]
     },
     {
@@ -60,6 +76,20 @@
         "photos": [
             {"url": "https://commons.wikimedia.org/wiki/File:Cervino_svizzero.jpg#/media/File:Cervino_svizzero.jpg"},
             {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Lanersbach.jpg/2560px-Lanersbach.jpg"}
+        ],
+        "comments": [
+            {
+                "commenter": "cones_of_dunshire",
+                "commentText": "llamas"
+            },
+            {
+                "commenter": "duke_silver_",
+                "commentText": "birds fly to the north"
+            },
+            {
+                "commenter": "burt_macklin_fbi",
+                "commentText": "Under the sea"
+            }
         ]
     },
     {
@@ -82,6 +112,12 @@
             {"url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Machu_Picchu%2C_Peru.jpg"},
             {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/La_gran_pir%C3%A1mide_de_la_Huaca_Pucllana.jpg/2560px-La_gran_pir%C3%A1mide_de_la_Huaca_Pucllana.jpg"},
             {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Sacred_Valley_%28around_Pisaq%29%2C_Peru.jpg/2880px-Sacred_Valley_%28around_Pisaq%29%2C_Peru.jpg"}
+        ],
+        "comments": [
+            {
+                "commenter": "janet_snakehole",
+                "commentText": "Did you see alpacas?"
+            }
         ]
     },
     {
@@ -102,6 +138,12 @@
         "photos": [
             {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Iceland_-_2017-02-22_-_Gullfoss_-_3677.jpg/2880px-Iceland_-_2017-02-22_-_Gullfoss_-_3677.jpg"},
             {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Alopex_lagopus_IMG_9019.JPG/2880px-Alopex_lagopus_IMG_9019.JPG"}
+        ],
+        "comments": [
+            {
+                "commenter": "janet_snakehole",
+                "commentText": "Do dragons live in Iceland?"
+            }
         ]    
     }
 ]
