@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { QUERY_SINGLE_TRIP } from '../utils/queries';
 import { DELETE_TRIP } from '../utils/mutations';
 import Auth from '../utils/auth'
+import {Link} from 'react-router-dom'
 
 export default function Trip() {
     const { _id } = useParams();
@@ -32,6 +33,10 @@ export default function Trip() {
     return (
         <div>
             <h2>{trip.location}</h2>
+            <h3><Link to={`/profiles/${trip.traveller}`}>{trip.traveller}</Link></h3>
+
+            {console.log(trip)}
+
             {/* {console.log(activities)}
             {console.log(restaurants)} */}
 

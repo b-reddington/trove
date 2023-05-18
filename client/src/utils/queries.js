@@ -10,27 +10,11 @@ export const QUERY_USER = gql`
       trips {
         _id
         location
-        traveller
         season
-        likes
         createdAt
-        activities {
-          _id
-          name
-        }
-        restaurants {
-          _id
-          name
-        }
+        likes
         photos {
-          _id
           url
-        }
-        comments {
-          _id
-          commentText
-          commenter
-          createdAt
         }
       }
     }
