@@ -73,7 +73,14 @@ function Post() {
                         </div>
                     ))}
                     <button className="btn btn-primary lb" onClick={handleAddActivity}>+</button>
+<<<<<<< Updated upstream
 
+=======
+                    <>
+                        {/* <CloudinaryUpload /> */}
+
+                    </>
+>>>>>>> Stashed changes
                     <button className="btn btn-block pswd-btn login-btn" style={{ cursor: 'pointer' }} type="submit">
                         Post
                     </button>
