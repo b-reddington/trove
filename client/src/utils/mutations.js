@@ -28,29 +28,12 @@ export const LOGIN_USER = gql`
 
 // create a new trip
 export const ADD_TRIP = gql`
-    mutation addTrip($location: String!, $season: String, $restaurants: [RestaurantInput], $activities: [ActivityInput], $photos: [String]) {
-        addTrip(location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
-            _id
-            traveller
-            location
-            season
-            likes
-            activities {
-                name
-            }
-            restaurants {
-                name
-            }
-            photos {
-                url
-            }
-            comments {
-                _id
-                commentText
-            }
-        }
-    }
-`;
+ mutation Mutation($location: String!, $season: String!, $restaurants: [RestaurantInput], $activities: [ActivityInput], $photos: [PhotoInput]) {
+  addTrip(location: $location, season: $season, restaurants: $restaurants, activities: $activities, photos: $photos) {
+    location
+  }
+}`;
+
 
 // update a trip
 export const UPDATE_TRIP = gql`
