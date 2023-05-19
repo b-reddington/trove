@@ -1,35 +1,43 @@
 import React, { useState } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
-
+import { Button, Modal, Carousel } from 'react-bootstrap/';
 
 export default function CarouselImg({ images = [] }) {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-//   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+    setShowModal(true);
+  };
 
-//   const goToPreviousImage = () => {
-//     const newIndex = (currentImageIndex - 1 + images.length) % images.length;
-//     setCurrentImageIndex(newIndex);
-//   };
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
 
-//   const goToNextImage = () => {
-//     const newIndex = (currentImageIndex + 1) % images.length;
-//     setCurrentImageIndex(newIndex);
-//   };
-//   const imageUrls = images.map((photo) => photo.url);
   return (
-    
-    
-    <Carousel className='w-100 d-block mx-auto' variant='dark'>
-    {images.map((img)=>(
-        <Carousel.Item key={img._id}>
-            <img
-            className="d-block mx-auto w-75"
-            src={img.url}
-            />
-        </Carousel.Item>
-    ))}
-    </Carousel>
-    
-  );
-};
+    <>
+      <Carousel className='w-100 d-block mx-auto col-5' variant='dark'>
+        {images.map((img, index) => (
+          <Carousel.Item key={img._id} onClick={() => handleImageClick(index)}>
+            <img className="d-block mx-auto w-75 rounded" src={img.url} alt={img.alt} />
+          </Carousel.Item>
+        ))}
+      </Carousel>
 
+      <Modal show={showModal} onHide={handleModalClose} size="lg">
+        <Modal.Body>
+          <img
+            className="w-100"
+            src={images[selectedImageIndex]?.url}
+            alt={images[selectedImageIndex]?.alt}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger col-12" onClick={handleModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}

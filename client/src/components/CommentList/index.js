@@ -1,6 +1,7 @@
 import React from 'react';
 import CloseButton from 'react-bootstrap/CloseButton';
 import Auth from '../../utils/auth'
+import { Col, Row } from 'react-bootstrap/';
 
 const CommentList = ({ comments = [], commentDeleter }) => {
 
@@ -10,23 +11,28 @@ const CommentList = ({ comments = [], commentDeleter }) => {
 
   return (
     <>
-      <div className="flex-row my-4">
+      <div className="flex-row">
         {comments &&
           comments.map((comment) => (
             <div key={comment._id} className="col-12 mb-3 pb-3">
-              
-              <div className="p-3 bg-dark text-light">
+
+              <div className="p-3 commentBody">
                 {Auth.loggedIn() && comment.commenter === Auth.getProfile().data.username ? (
-                  <CloseButton variant='white' id={comment._id} onClick={commentDeleter} />
-                ): null
+                  <CloseButton variant='dark' id={comment._id} onClick={commentDeleter} />
+                ) : null
                 }
-                <h5 className="card-header">
+                <Row>
                   {comment.commenter} commented{' '}
-                  <span style={{ fontSize: '0.825rem' }}>
+
+                </Row>
+                <Row>
+                  <p className="mt-2">{comment.commentText}</p>
+                </Row>
+                <Row>
+                  <div style={{ fontSize: '0.825rem' }}>
                     on {comment.createdAt}
-                  </span>
-                </h5>
-                <p className="card-body">{comment.commentText}</p>
+                  </div>
+                </Row>
               </div>
             </div>
           ))}
