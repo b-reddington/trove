@@ -12,7 +12,7 @@ function TripsList() {
       <div>
         <h2>EXPLORE TRIPS</h2>
 
-        <div className="d-flex flex-wrap justify-content-around gap-1">
+        <div className="d-flex flex-wrap gap-3">
           {
             trips.map((trip) => (<PostCard key={trip._id} tripId={trip._id} location={trip.location} traveller={trip.traveller} createdAt={trip.createdAt} />))
           }

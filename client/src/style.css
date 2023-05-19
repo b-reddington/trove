@@ -14,6 +14,7 @@
 
 * {
     font-family: 'Montserrat', sans-serif !important;
+    word-wrap: break-word;
 }
 
 body {
@@ -78,25 +79,26 @@ form p {
     padding-bottom: 10px;
     font-size: 1em;
 }
+
 /* Add a post page button formatting */
 .inner-input {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-  }
-  
-  .inner-input label {
-    margin-bottom: 0.5rem; 
-  }
-  
-  .inner-input input {
-    width: 100%; 
-  }
-  
-  .inner-input:hover button {
+}
+
+.inner-input label {
+    margin-bottom: 0.5rem;
+}
+
+.inner-input input {
+    width: 100%;
+}
+
+.inner-input:hover button {
     display: block;
-  }
+}
 
 /* End section */
 .button {
@@ -106,78 +108,86 @@ form p {
     margin-bottom: 30px !important;
     /* margin: auto !important; */
 }
-.deleteBtn{
+
+.deleteBtn {
     border-radius: 50px;
-    border:none;
-    height:30px !important;
-    width:30px !important;
+    border: none;
+    height: 30px !important;
+    width: 30px !important;
     font-size: 2.2em;
     text-align: center;
     display: none;
     position: absolute;
-    top: 100%; 
+    top: 100%;
     right: 0;
     background-color: var(--dark-blue);
     transform: translateY(-110%) translateX(-10%);
 
     transition: background-color 0.3s;
-    color:white;
+    color: white;
 }
-.deleteBtn p{
+
+.deleteBtn p {
     transform: translateY(-22%) translateX(-18%);
 }
+
 .deleteBtn:hover {
     background-color: var(--light-blue);
-  }
+}
+
 .login-btn:hover {
     background-color: var(--light-blue) !important;
     color: var(--dark-blue);
     border: solid 1px var(--dark-blue);
     font-weight: 600;
 }
-.croppedImage{
+
+.croppedImage {
     justify-content: center;
     align-items: center;
     margin-top: 5%;
-    
+
 }
-.croppedImage img{
-    width:100%;
+
+.croppedImage img {
+    width: 100%;
     margin-top: 5%;
-    
-    
+
+
 }
-.croppedImage img:hover{
-    width:100%;
+
+.croppedImage img:hover {
+    width: 100%;
     margin-top: 5%;
 }
-.imgContainer{
+
+.imgContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.imgBtn{
-    position:absolute;
-    display:none;
+.imgBtn {
+    position: absolute;
+    display: none;
     background-color: none;
     text-align: center;
 }
-.imgContainer:hover .imgBtn{
-    display:flex;
+
+.imgContainer:hover .imgBtn {
+    display: flex;
 }
-.imageUpload{
+
+.imageUpload {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.imageUpload button{
+
+.imageUpload button {
     margin-top: 2%;
-}
-.lb {
-    display: block;
 }
 
 .nav-title {
@@ -210,29 +220,8 @@ form p {
     background-color: var(--offWhite);
 }
 
-/* Styles for medium screens and smaller */
-@media (max-width: 768px) {
-    .card {
-        width: 60vw;
-    }
-}
-
-/* Styles for small screens */
-@media (max-width: 480px) {
-    .card {
-        width: 80vw;
-        margin-top: 10vh;
-        border-radius: 10px;
-    }
-}
-
-.form-select{
+.form-select {
     border-radius: 30px;
-}
-
-/* styling for cards - kept here for now */
-* {
-    word-wrap: break-word;
 }
 
 .trip-link {
@@ -247,7 +236,7 @@ form p {
 }
 
 .postcard {
-    margin: 0!important;
+    margin: 0 !important;
     margin-bottom: 0.25em;
     background-color: var(--light-blue);
     border: none;
@@ -277,4 +266,96 @@ form p {
 .created-on {
     text-align: center;
     font-size: 0.8em;
+}
+
+.postContainer {
+    margin-top: 20px;
+    background-color: var(--light-blue);
+    border-radius: 20px;
+    min-height: 30vh;
+    text-align: center;
+}
+
+.postContainer ul li {
+    background-color: var(--dark-blue);
+    color: var(--offWhite);
+    font-size: 1.25em;
+    margin-top: 10px;
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+}
+
+.commentContainer {
+    flex-direction: column-reverse;
+    overflow-y: auto;
+    overscroll-behavior: auto;
+    height: 50vh;
+    width: 50vw;
+    background-color: var(--light-blue);
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.commentBody {
+    background-color: var(--offWhite);
+    border-radius: 10px;
+}
+
+.author a{
+    font-size: 0.75em;
+    color: var(--black);
+    text-decoration: none;
+}
+
+.card {
+    width: 30vw;
+}
+
+.commentCard {
+    width: fit-content;
+    margin-top: 30px;
+}
+
+.likeBtn {
+background-color: var(--dark-blue);
+height: 2rem;
+width: fit-content;
+text-align: center;
+margin: auto;
+color: white;
+}
+
+.likeBtn:hover {
+    background-color: var(--offWhite);
+    border: var(--dark-blue) 2px solid;
+}
+
+/* Generalized Styles */
+.centered {
+    margin: auto;
+    text-align: center;
+}
+
+.lb {
+    display: block;
+}
+
+
+/* Styles for medium screens and smaller */
+@media (max-width: 768px) {
+    .card {
+        width: 60vw;
+    }
+}
+
+/* Styles for small screens */
+@media (max-width: 480px) {
+    .card {
+        width: 80vw;
+        margin-top: 10vh;
+        border-radius: 10px;
+    }
 }
